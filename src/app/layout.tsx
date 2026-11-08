@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Newsreader, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import FloatingMailbox from "@/components/FloatingMailbox";
 
 const anton = Anton({
   weight: "400",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="antialiased overflow-x-hidden bg-[#07090d] text-[#efeade]">
         <SmoothScroll>{children}</SmoothScroll>
+        <FloatingMailbox email="adityahanuma8@gmail.com" />
       </body>
     </html>
   );
