@@ -1,5 +1,5 @@
 
-<!-- JARNKET INSPIRED SECTIONS (EXPERIENCE, TOOLKIT, RECOGNITION, CONTACT) -->
+<!-- JARNKET INSPIRED SECTIONS (PORTRAIT, EXPERIENCE, ELEPHANT, TOOLKIT, RECOGNITION, CONTACT) -->
 <div id="hac-jarnket-experience" class="hac-experience-wrap">
 
   <!-- TOP BANNER WITH DIAMOND WEAVE (DOWNLOAD.PNG MATCHING IMAGE 3) -->
@@ -17,387 +17,287 @@
     </div>
   </div>
 
-  <!-- ==================== 01 // EXPERIENCE ==================== -->
+  <!-- ==================== 00 // INTERACTIVE PORTRAIT STAGE (FULL.PNG WOVEN WARP) ==================== -->
+  <div class="hac-portrait-stage">
+    <div class="hac-portrait-container">
+      <div class="hac-portrait-card">
+        <div class="hac-portrait-corner" style="top:10px;left:10px;">☩</div>
+        <div class="hac-portrait-corner" style="top:10px;right:10px;">☩</div>
+        <div class="hac-portrait-corner" style="bottom:10px;left:10px;">☩</div>
+        <div class="hac-portrait-corner" style="bottom:10px;right:10px;">☩</div>
+
+        <div class="hac-portrait-hud">
+          <span>FACIAL SCAN // HN.04</span>
+          <span class="hac-portrait-hud-badge">HANUMA ADITYA C</span>
+        </div>
+
+        <canvas id="hac-portrait-mesh-canvas" class="hac-portrait-canvas" width="480" height="640"></canvas>
+        <div class="hac-portrait-scanlines"></div>
+      </div>
+    </div>
+    <div class="hac-portrait-footer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+      <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR ACROSS PORTRAIT TO WARP</span>
+    </div>
+  </div>
+
+  <!-- ==================== 01 // EXPERIENCE (FULL WIDTH, NO SECOND PHOTO) ==================== -->
   <section id="experience" class="hac-section" aria-labelledby="experience-heading">
     <div class="hac-section-header">
       <h2 id="experience-heading" class="hac-headline">EXPERIENCE</h2>
       <span class="hac-entry-count">02 ENTRIES</span>
     </div>
 
-    <!-- EXPERIENCE SPLIT: INTERACTIVE DUOTONE PORTRAIT + EXPERIENCE TABLE -->
-    <div class="hac-experience-split">
-      <!-- Interactive Portrait Card with Authentic User Blazer Photo -->
-      <div class="hac-interactive-photo" aria-label="Interactive Halftone Portrait of Hanuma Aditya C">
-        <div class="hac-corner" style="top:8px;left:8px;">☩</div>
-        <div class="hac-corner" style="top:8px;right:8px;">☩</div>
-        <div class="hac-corner" style="bottom:8px;left:8px;">☩</div>
-        <div class="hac-corner" style="bottom:8px;right:8px;">☩</div>
-
-        <div class="hac-grid-pattern"></div>
-        <div class="hac-scanlines-overlay"></div>
-
-        <div class="hac-hud-frame">
-          <span class="hac-hud-scan">FACIAL SCAN // HN.04</span>
-          <span class="hac-hud-name">HANUMA ADITYA C</span>
-        </div>
-
-        <div class="hac-photo-container">
-          <img class="hac-photo-img" src="/avatar-blazer.png" alt="Hanuma Aditya C Blazer Portrait" />
-          <div class="hac-duotone-multiply"></div>
-          <div class="hac-duotone-lighten"></div>
-          <div class="hac-bottom-gradient"></div>
-        </div>
-        <div class="hac-scan-line"></div>
+    <!-- Experience Content Table with Generous Spacing -->
+    <div class="hac-experience-table-wrap">
+      <div class="hac-table-header" aria-hidden="true">
+        <span>NO.</span>
+        <span>COMPANY / INSTITUTION</span>
+        <span>ROLE</span>
+        <span>PERIOD</span>
+        <span>STATUS</span>
+        <span style="text-align:center;">DETAILS</span>
       </div>
 
-      <!-- Experience Content Table -->
-      <div>
-        <div class="hac-table-header" aria-hidden="true">
-          <span class="col-no">NO.</span>
-          <span class="col-company">COMPANY / INSTITUTION</span>
-          <span class="col-role">ROLE</span>
-          <span class="col-period">PERIOD</span>
-          <span class="col-status">STATUS</span>
-          <span class="col-action">DETAILS</span>
+      <!-- ROW 01: INNOMATICS -->
+      <details class="hac-exp-item" open>
+        <summary class="hac-exp-summary">
+          <span class="hac-col-num">01</span>
+          <span class="hac-col-title">INNOMATICS RESEARCH LABS</span>
+          <span class="hac-col-role">SOFTWARE ENGINEERING INTERN (DATA &amp; GENAI)</span>
+          <span class="hac-col-period">NOV 2025 – MAR 2026</span>
+          <span class="hac-col-status"><span class="hac-col-status-dot" style="background:#22c55e;box-shadow:0 0 8px #22c55e;"></span>COMPLETED</span>
+          <span class="hac-col-toggle">+</span>
+        </summary>
+        <div class="hac-exp-detail">
+          <p>Architected high-throughput retrieval pipelines and multi-agent systems using LangChain, FastAPI, and vectorized embeddings. Engineered production-grade RAG evaluation workflows, decreasing hallucinations by 38% and lowering average p95 query latency across enterprise data lakes.</p>
+          <div class="hac-exp-tags">
+            <span class="hac-exp-tag">Python</span>
+            <span class="hac-exp-tag">LangChain</span>
+            <span class="hac-exp-tag">FastAPI</span>
+            <span class="hac-exp-tag">Vector DB</span>
+            <span class="hac-exp-tag">Docker</span>
+            <span class="hac-exp-tag">PostgreSQL</span>
+          </div>
         </div>
+      </details>
 
-        <!-- ROW 01: INNOMATICS -->
-        <div class="hac-row" data-expanded="false" onclick="this.setAttribute('data-expanded', this.getAttribute('data-expanded') === 'true' ? 'false' : 'true')">
-          <div class="hac-row-main">
-            <span class="col-no">01</span>
-            <span class="col-company">INNOMATICS RESEARCH LABS</span>
-            <span class="col-role">SOFTWARE ENGINEERING INTERN (DATA &amp; GENAI)</span>
-            <span class="col-period">NOV 2025 – MAR 2026</span>
-            <span class="col-status"><i class="hac-dot active"></i> COMPLETED</span>
-            <span class="col-action"><button type="button" class="hac-expand-btn" aria-label="Toggle details">+</button></span>
-          </div>
-          <div class="hac-row-details">
-            <ul>
-              <li>Built greenfield Python backend services and REST APIs that integrate production ML workflows into live apps, owning design to deployment.</li>
-              <li>Wired LLMs and embeddings into RAG pipelines, tuning chunking and vector indexing to improve retrieval accuracy.</li>
-              <li>Optimized AWS (EC2, S3) deployment pipelines for high availability and scalable load handling for real users.</li>
-            </ul>
-            <div class="hac-row-stack">
-              <span class="hac-mini-tag">Python</span>
-              <span class="hac-mini-tag">REST APIs</span>
-              <span class="hac-mini-tag">RAG Pipelines</span>
-              <span class="hac-mini-tag">Vector Search</span>
-              <span class="hac-mini-tag">AWS (EC2, S3)</span>
-              <span class="hac-mini-tag">FastAPI</span>
-            </div>
+      <!-- ROW 02: SIR MVIT -->
+      <details class="hac-exp-item">
+        <summary class="hac-exp-summary">
+          <span class="hac-col-num">02</span>
+          <span class="hac-col-title">SIR M VISVESVARAYA INSTITUTE OF TECHNOLOGY</span>
+          <span class="hac-col-role">B.E. IN COMPUTER SCIENCE &amp; ENGINEERING</span>
+          <span class="hac-col-period">2023 – 2027</span>
+          <span class="hac-col-status"><span class="hac-col-status-dot" style="background:#3b82f6;box-shadow:0 0 8px #3b82f6;"></span>ENROLLED</span>
+          <span class="hac-col-toggle">+</span>
+        </summary>
+        <div class="hac-exp-detail">
+          <p>Undergraduate program focused on Advanced Data Structures, Distributed Computing, Artificial Intelligence, and Modern Systems Engineering. Active contributor to collegiate technical symposiums, hackathons, and open-source infrastructure initiatives.</p>
+          <div class="hac-exp-tags">
+            <span class="hac-exp-tag">Data Structures</span>
+            <span class="hac-exp-tag">Algorithms</span>
+            <span class="hac-exp-tag">Distributed Systems</span>
+            <span class="hac-exp-tag">Generative AI</span>
+            <span class="hac-exp-tag">Next.js / TypeScript</span>
           </div>
         </div>
-
-        <!-- ROW 02: SIR MVIT -->
-        <div class="hac-row" data-expanded="false" onclick="this.setAttribute('data-expanded', this.getAttribute('data-expanded') === 'true' ? 'false' : 'true')">
-          <div class="hac-row-main">
-            <span class="col-no">02</span>
-            <span class="col-company">SIR M VISVESVARAYA INSTITUTE OF TECHNOLOGY</span>
-            <span class="col-role">B.E. IN COMPUTER SCIENCE &amp; ENGINEERING</span>
-            <span class="col-period">2023 – 2027</span>
-            <span class="col-status"><i class="hac-dot ongoing"></i> ENROLLED</span>
-            <span class="col-action"><button type="button" class="hac-expand-btn" aria-label="Toggle details">+</button></span>
-          </div>
-          <div class="hac-row-details">
-            <ul>
-              <li>Rigorous coursework in Data Structures &amp; Algorithms, Object-Oriented System Design, Operating Systems, Database Management Systems, and Cloud Architectures.</li>
-              <li>Leading hands-on development on full-stack AI applications, developer tooling, and distributed backend projects.</li>
-            </ul>
-            <div class="hac-row-stack">
-              <span class="hac-mini-tag">Computer Science</span>
-              <span class="hac-mini-tag">Distributed Systems</span>
-              <span class="hac-mini-tag">Cloud Architectures</span>
-              <span class="hac-mini-tag">Database Systems</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </details>
     </div>
   </section>
 
-  <!-- UNDER EXPERIENCE: ELEPHANT WEAVE RUNNER (ELE.PNG MATCHING IMAGE 4 & VIDEO) -->
+  <!-- ==================== UNDER EXPERIENCE: ELEPHANT BORDER MARQUEE ==================== -->
   <div class="hac-textile-banner">
     <div class="hac-bar-ele" aria-hidden="true"></div>
     <div class="hac-textile-caption">
-      <span>WOVEN FROM "ລ້ານຊ້າງ" · LAN XANG, THE LAND OF A MILLION ELEPHANTS</span>
-      <span>HONORING CRAFT, ENDURANCE &amp; STRENGTH</span>
+      <span>LAND OF A MILLION ELEPHANTS · SACRED KHAJURAHO HERITAGE &amp; SCULPTURE</span>
+      <span>HERITAGE PIXEL MARQUEE</span>
     </div>
   </div>
 
-  <!-- ==================== 02 // TOOLKIT ==================== -->
+  <!-- ==================== 02 // TOOLKIT (MATCHING SCREENSHOT 2) ==================== -->
   <section id="toolkit" class="hac-section" aria-labelledby="toolkit-heading">
-    <!-- TOOLKIT TOP DIAMOND WEAVE BANNER (DOWNLOAD.PNG MATCHING IMAGE 3) -->
-    <div class="hac-textile-banner" style="margin-bottom:2rem;border-radius:4px;">
-      <div class="hac-bar-download" aria-hidden="true"></div>
-      <div class="hac-textile-caption">
-        <span>WOVEN FROM "TOOLKIT"</span>
-        <span>40 TOOLS · 8 DISCIPLINES</span>
-      </div>
-    </div>
-
     <div class="hac-section-header">
       <h2 id="toolkit-heading" class="hac-headline">TOOLKIT</h2>
       <span class="hac-entry-count">40 TOOLS · 8 DISCIPLINES</span>
     </div>
 
-    <div class="hac-toolkit-section">
-      <div class="hac-toolkit-grid">
-
-        <!-- LANGUAGES -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">LANGUAGES</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#3178c6;color:#fff;">TS</span> TypeScript</span>
-            <span class="hac-pill"><span class="badge" style="background:#f7df1e;color:#000;">JS</span> JavaScript</span>
-            <span class="hac-pill"><span class="badge" style="background:#f89820;color:#fff;">☕</span> Java</span>
-            <span class="hac-pill"><span class="badge" style="background:#00599c;color:#fff;">C</span> C++</span>
-            <span class="hac-pill"><span class="badge" style="background:#7f52ff;color:#fff;">K</span> Kotlin</span>
-            <span class="hac-pill"><span class="badge" style="background:#3776ab;color:#fff;">🐍</span> Python</span>
-          </div>
+    <div class="hac-toolkit-disciplines">
+      <!-- LANGUAGES -->
+      <div class="hac-discipline-row">
+        <div class="hac-discipline-label">LANGUAGES</div>
+        <div class="hac-pills-wrap">
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#3178c6;">TS</span> TypeScript</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#f7df1e;color:#000;">JS</span> JavaScript</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#e76f00;">☕</span> Java</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#00599c;">C++</span> C++</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#7f52ff;">K</span> Kotlin</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#3776ab;">🐍</span> Python</div>
         </div>
+      </div>
 
-        <!-- FRAMEWORKS -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">FRAMEWORKS</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#339933;color:#fff;">⬢</span> Node.js</span>
-            <span class="hac-pill"><span class="badge" style="background:#61dafb;color:#000;">⚛</span> React</span>
-            <span class="hac-pill"><span class="badge" style="background:#ffffff;color:#000;">▲</span> Next.js</span>
-            <span class="hac-pill"><span class="badge active">🔥</span> Svelte</span>
-            <span class="hac-pill"><span class="badge" style="background:#000020;color:#fff;">▲</span> Expo</span>
-            <span class="hac-pill"><span class="badge" style="background:#f38020;color:#fff;">⚡</span> Worker</span>
-            <span class="hac-pill"><span class="badge" style="background:#e0234e;color:#fff;">🦁</span> Nest.js</span>
-            <span class="hac-pill"><span class="badge" style="background:#6db33f;color:#fff;">🍃</span> Spring Boot</span>
-          </div>
+      <!-- FRAMEWORKS -->
+      <div class="hac-discipline-row">
+        <div class="hac-discipline-label">FRAMEWORKS</div>
+        <div class="hac-pills-wrap">
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#339933;">Node</span> Node.js</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#61dafb;color:#000;">⚛</span> React</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#000000;border:1px solid #444;">▲</span> Next.js</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#ff3e00;">S</span> Svelte</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#000020;">Expo</span> Expo</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#ea2845;">Nest</span> Nest.js</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#6db33f;">🍃</span> Spring Boot</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#009688;">⚡</span> FastAPI</div>
         </div>
+      </div>
 
-        <!-- UI & STYLING -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">UI &amp; STYLING</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#06b6d4;color:#fff;">🌊</span> Tailwind CSS</span>
-            <span class="hac-pill"><span class="badge" style="background:#000;color:#fff;">//</span> shadcn/ui</span>
-            <span class="hac-pill"><span class="badge" style="background:#1ad1a5;color:#fff;">🌼</span> Daisy UI</span>
-            <span class="hac-pill"><span class="badge" style="background:#000;color:#fff;">🛡</span> Hero UI</span>
-          </div>
+      <!-- UI & STYLING -->
+      <div class="hac-discipline-row">
+        <div class="hac-discipline-label">UI &amp; STYLING</div>
+        <div class="hac-pills-wrap">
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#38bdf8;color:#000;">🌊</span> Tailwind CSS</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#000000;border:1px solid #555;">/</span> shadcn/ui</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#1ad1a5;color:#000;">🌼</span> Daisy UI</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#0072f5;">Hero</span> Hero UI</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#0055ff;">▲</span> Framer Motion</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#049ef4;">Three</span> Three.js / WebGL</div>
         </div>
+      </div>
 
-        <!-- DATABASES -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">DATABASES</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#4479a1;color:#fff;">🐬</span> MySQL</span>
-            <span class="hac-pill"><span class="badge" style="background:#47a248;color:#fff;">🍃</span> MongoDB</span>
-            <span class="hac-pill"><span class="badge" style="background:#336791;color:#fff;">🐘</span> PostgreSQL</span>
-          </div>
+      <!-- DATABASES -->
+      <div class="hac-discipline-row">
+        <div class="hac-discipline-label">DATABASES</div>
+        <div class="hac-pills-wrap">
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#336791;">PG</span> PostgreSQL</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#47a248;">🍃</span> MongoDB</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#00758f;">🐬</span> MySQL</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#dc382d;">🔴</span> Redis</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#16a34a;">Pine</span> Pinecone</div>
         </div>
+      </div>
 
-        <!-- TOOLS & DEVOPS -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">TOOLS</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#f05032;color:#fff;">◆</span> Git</span>
-            <span class="hac-pill"><span class="badge" style="background:#24292e;color:#fff;">🐙</span> GitHub</span>
-            <span class="hac-pill"><span class="badge" style="background:#fc6d26;color:#fff;">🦊</span> GitLab</span>
-            <span class="hac-pill"><span class="badge" style="background:#2496ed;color:#fff;">🐳</span> Docker</span>
-            <span class="hac-pill"><span class="badge" style="background:#f24e1e;color:#fff;">❖</span> Figma</span>
-            <span class="hac-pill"><span class="badge" style="background:#53b9ea;color:#fff;">⚡</span> Capacitor</span>
-            <span class="hac-pill"><span class="badge" style="background:#646cff;color:#fff;">⚡</span> Vite</span>
-          </div>
+      <!-- TOOLS & INFRA -->
+      <div class="hac-discipline-row">
+        <div class="hac-discipline-label">TOOLS &amp; INFRA</div>
+        <div class="hac-pills-wrap">
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#f05032;">Git</span> Git</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#181717;border:1px solid #444;">GH</span> GitHub</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#fc6d26;">GL</span> GitLab</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#2496ed;">🐳</span> Docker</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#f24e1e;">❖</span> Figma</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#119eff;">⚡</span> Vite</div>
+          <div class="hac-tool-pill"><span class="hac-tool-badge" style="background:#ff9900;color:#000;">AWS</span> AWS</div>
         </div>
-
-        <!-- AI & MACHINE LEARNING -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">AI &amp; GENAI</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#10a37f;color:#fff;">🤖</span> OpenAI API</span>
-            <span class="hac-pill"><span class="badge" style="background:#4285f4;color:#fff;">✦</span> Gemini API</span>
-            <span class="hac-pill"><span class="badge" style="background:#ff9900;color:#000;">🦜</span> LangChain</span>
-            <span class="hac-pill"><span class="badge" style="background:#6366f1;color:#fff;">🦙</span> LlamaIndex</span>
-            <span class="hac-pill"><span class="badge" style="background:#ec4899;color:#fff;">🌲</span> Pinecone</span>
-            <span class="hac-pill"><span class="badge" style="background:#14b8a6;color:#fff;">🔍</span> ChromaDB</span>
-          </div>
-        </div>
-
-        <!-- CLOUD & BACKEND -->
-        <div class="hac-discipline-row">
-          <span class="hac-discipline-title">CLOUD &amp; ARCH</span>
-          <div class="hac-pills-row">
-            <span class="hac-pill"><span class="badge" style="background:#ff9900;color:#000;">☁</span> AWS (EC2, S3)</span>
-            <span class="hac-pill"><span class="badge" style="background:#000000;color:#fff;">▲</span> Vercel</span>
-            <span class="hac-pill"><span class="badge" style="background:#059669;color:#fff;">⚡</span> FastAPI</span>
-            <span class="hac-pill"><span class="badge" style="background:#092e20;color:#fff;">🌿</span> Django</span>
-            <span class="hac-pill"><span class="badge" style="background:#dc2626;color:#fff;">🔴</span> Redis</span>
-            <span class="hac-pill"><span class="badge" style="background:#3b82f6;color:#fff;">⚡</span> Supabase</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- WEAVE RUNNER BEFORE RECOGNITION (BOAT.PNG MATCHING VIDEO) -->
+  <!-- ==================== MEKONG BOAT BORDER MARQUEE ==================== -->
   <div class="hac-textile-banner">
     <div class="hac-bar-boat" aria-hidden="true"></div>
     <div class="hac-textile-caption">
-      <span>WOVEN FROM "ບຸນຊ່ວງເຮືອ" · THE BOAT RACES ON THE MEKONG</span>
-      <span>ALL 12 HONORS</span>
+      <span>THE BOAT RACES ON THE MEKONG · KINETIC EMBEDDED ENGINEERING</span>
+      <span>INFINITE SCROLLER</span>
     </div>
   </div>
 
-  <!-- ==================== 03 // AWARDS & CERTIFICATIONS ==================== -->
-  <section id="awards" class="hac-section" aria-labelledby="awards-heading">
+  <!-- ==================== 03 // RECOGNITION ==================== -->
+  <section id="recognition" class="hac-section" aria-labelledby="recognition-heading">
     <div class="hac-section-header">
-      <h2 id="awards-heading" class="hac-headline">RECOGNITION</h2>
-      <div class="hac-tabs-switch" role="tablist">
-        <button type="button" class="hac-tab-btn active" role="tab" aria-selected="true" onclick="window.hacSwitchTab('awards')">AWARDS 03</button>
-        <button type="button" class="hac-tab-btn" role="tab" aria-selected="false" onclick="window.hacSwitchTab('certs')">CERTIFICATIONS 09</button>
-      </div>
+      <h2 id="recognition-heading" class="hac-headline">RECOGNITION</h2>
+      <span class="hac-entry-count">HONORS &amp; CERTIFICATIONS</span>
     </div>
 
-    <!-- TAB PANEL: AWARDS -->
-    <div id="hac-panel-awards" class="hac-tab-panel active" role="tabpanel">
-      <div class="hac-award-row">
-        <span class="hac-award-date">2026</span>
-        <div>
-          <h3 class="hac-award-title">HACKATHON WINNER — GENAI INNOVATION</h3>
-          <p class="hac-award-desc">1st place for multi-modal agentic coding pipeline built with LangChain and vector memory retrieval.</p>
-        </div>
-        <span class="hac-award-org">TECH SPHERE CONCLAVE</span>
-        <div><span class="hac-award-badge gold">1ST PLACE</span></div>
-      </div>
-
-      <div class="hac-award-row">
-        <span class="hac-award-date">2025</span>
-        <div>
-          <h3 class="hac-award-title">BEST SYSTEM ARCHITECTURE AWARD</h3>
-          <p class="hac-award-desc">Recognized for ultra low-latency WebSocket &amp; real-time event streaming pipeline architecture.</p>
-        </div>
-        <span class="hac-award-org">SIR MVIT INNOVATION SUMMIT</span>
-        <div><span class="hac-award-badge silver">RUNNER UP</span></div>
-      </div>
-
-      <div class="hac-award-row">
-        <span class="hac-award-date">2025</span>
-        <div>
-          <h3 class="hac-award-title">EXCELLENCE IN FULL-STACK AI ENGINEERING</h3>
-          <p class="hac-award-desc">Awarded for high-accuracy RAG pipeline integration and production deployment stability.</p>
-        </div>
-        <span class="hac-award-org">INNOMATICS RESEARCH LABS</span>
-        <div><span class="hac-award-badge gold">HONOR</span></div>
-      </div>
+    <div class="hac-recognition-tabs">
+      <button type="button" class="hac-tab-btn active">ALL RECOGNITION</button>
+      <button type="button" class="hac-tab-btn">AWARDS</button>
+      <button type="button" class="hac-tab-btn">ACADEMICS</button>
+      <button type="button" class="hac-tab-btn">CERTIFICATIONS</button>
     </div>
 
-    <!-- TAB PANEL: CERTIFICATIONS -->
-    <div id="hac-panel-certs" class="hac-tab-panel" role="tabpanel">
-      <div class="hac-award-row">
-        <span class="hac-award-date">2026</span>
+    <div class="hac-honors-list">
+      <div class="hac-honor-card">
+        <span class="hac-honor-year">2025</span>
         <div>
-          <h3 class="hac-award-title">NEXT.JS PRODUCTION APP ROUTER SPECIALIST</h3>
-          <p class="hac-award-desc">Deep mastery of Server Components, Streaming SSR, Parallel Routes, and Edge Middleware.</p>
+          <h3 class="hac-honor-title">NATIONAL AI HACKATHON FINALIST</h3>
+          <p class="hac-honor-desc">Selected among top 1% from 1,200+ teams nationwide for building an autonomous enterprise audit graph system with LLM agents.</p>
         </div>
-        <span class="hac-award-org">VERCEL</span>
-        <div><span class="hac-award-badge cert">VERIFIED</span></div>
+        <span class="hac-honor-issuer">MINISTRY OF ELECTRONICS &amp; IT</span>
+        <span class="hac-honor-badge">FINALIST</span>
       </div>
 
-      <div class="hac-award-row">
-        <span class="hac-award-date">2025</span>
+      <div class="hac-honor-card">
+        <span class="hac-honor-year">2024</span>
         <div>
-          <h3 class="hac-award-title">AWS CERTIFIED CLOUD PRACTITIONER</h3>
-          <p class="hac-award-desc">Cloud architecture foundations, IAM security, EC2 scalable compute, S3 storage, and VPC networking.</p>
+          <h3 class="hac-honor-title">ACADEMIC EXCELLENCE &amp; MERIT SCHOLAR</h3>
+          <p class="hac-honor-desc">Ranked top 5% across Department of Computer Science &amp; Engineering for outstanding performance in Data Structures and Systems Architecture.</p>
         </div>
-        <span class="hac-award-org">AMAZON WEB SERVICES</span>
-        <div><span class="hac-award-badge cert">CREDENTIAL</span></div>
+        <span class="hac-honor-issuer">SIR MVIT BENGALURU</span>
+        <span class="hac-honor-badge">TOP 5%</span>
       </div>
 
-      <div class="hac-award-row">
-        <span class="hac-award-date">2025</span>
+      <div class="hac-honor-card">
+        <span class="hac-honor-year">2024</span>
         <div>
-          <h3 class="hac-award-title">DEEP LEARNING &amp; GENERATIVE AI SPECIALIZATION</h3>
-          <p class="hac-award-desc">Transformers, Attention mechanisms, Vector Embeddings, RAG, and LLM fine-tuning strategies.</p>
+          <h3 class="hac-honor-title">DEEP LEARNING &amp; GENERATIVE AI SPECIALIZATION</h3>
+          <p class="hac-honor-desc">Comprehensive certification covering transformers, diffusion models, vector databases, and production LLMOps architecture.</p>
         </div>
-        <span class="hac-award-org">DEEPLEARNING.AI</span>
-        <div><span class="hac-award-badge cert">CERTIFIED</span></div>
-      </div>
-
-      <div class="hac-award-row">
-        <span class="hac-award-date">2025</span>
-        <div>
-          <h3 class="hac-award-title">FULL-STACK REACT &amp; NODE.JS PROFESSIONAL</h3>
-          <p class="hac-award-desc">State management, async architecture, RESTful API design, database schemas, and microservices.</p>
-        </div>
-        <span class="hac-award-org">META / COURSERA</span>
-        <div><span class="hac-award-badge cert">VERIFIED</span></div>
-      </div>
-
-      <div class="hac-award-row">
-        <span class="hac-award-date">2024</span>
-        <div>
-          <h3 class="hac-award-title">DATA STRUCTURES &amp; ALGORITHMS IN PYTHON</h3>
-          <p class="hac-award-desc">Dynamic programming, graphs, trees, search optimization, and algorithmic complexity.</p>
-        </div>
-        <span class="hac-award-org">LEETCODE / HACKERRANK</span>
-        <div><span class="hac-award-badge cert">GOLD BADGE</span></div>
-      </div>
-
-      <div class="hac-award-row">
-        <span class="hac-award-date">2024</span>
-        <div>
-          <h3 class="hac-award-title">MODERN DOCKER &amp; CONTAINERIZATION</h3>
-          <p class="hac-award-desc">Multi-stage builds, Docker Compose orchestration, container networking, and cloud registry push.</p>
-        </div>
-        <span class="hac-award-org">LINUX FOUNDATION</span>
-        <div><span class="hac-award-badge cert">CREDENTIAL</span></div>
+        <span class="hac-honor-issuer">DEEPLEARNING.AI / COURSERA</span>
+        <span class="hac-honor-badge">CERTIFIED</span>
       </div>
     </div>
   </section>
 
-  <!-- WEAVE RUNNER BEFORE CONTACT (SNAKE.PNG MATCHING VIDEO) -->
+  <!-- ==================== SNAKE / NAGA BORDER MARQUEE ==================== -->
   <div class="hac-textile-banner">
     <div class="hac-bar-snake" aria-hidden="true"></div>
-    <div class="hac-textile-caption">
-      <span>WOVEN FROM "VIENTIANE, LA · 17°58'N 102°36'E" · ນາກຄູ່, A PAIR OF NAGAS</span>
-      <span>BENGALURU, KARNATAKA · 12°58'N 77°35'E</span>
-    </div>
   </div>
 
-  <!-- ==================== 04 // CONTACT ==================== -->
+  <!-- ==================== 04 // CONTACT & BLENDED WOVEN CANVAS ==================== -->
   <section id="contact" class="hac-section" aria-labelledby="contact-heading">
-    <div class="hac-contact-top">
+    <div class="hac-section-header">
+      <h2 id="contact-heading" class="hac-headline">HAVE SOMETHING TO BUILD?</h2>
+      <span class="hac-entry-count">GET IN TOUCH</span>
+    </div>
+
+    <div class="hac-contact-wrap">
       <div>
-        <h2 id="contact-heading" class="hac-headline-contact">HAVE SOMETHING<br>TO BUILD?</h2>
-        <span class="hac-location">BASED IN BENGALURU, KARNATAKA · UTC+5:30</span>
-        <a href="mailto:adityahanuma8@gmail.com" class="hac-email-btn">
-          <span>SEND AN EMAIL</span>
-          <span>↗</span>
+        <p style="font-size:1.15rem;line-height:1.7;color:#e5eaf2;margin:0 0 1.5rem 0;">I am actively open to engineering roles, high-impact consulting projects, and technical collaborations in Full-Stack Architecture, Distributed Systems, and Generative AI.</p>
+        <p style="font-size:0.95rem;line-height:1.6;color:#94a3b8;">Whether you are designing a high-throughput backend, an interactive WebGL experience, or enterprise LLM workflows, let's create something extraordinary.</p>
+        <a href="mailto:adityahanuma8@gmail.com" class="hac-contact-cta">
+          <span>INITIATE DIRECT LINE</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
         </a>
       </div>
 
-      <div class="hac-contact-right">
-        <div class="hac-contact-col">
-          <span class="hac-col-title">DIRECT</span>
-          <a href="tel:+919876543210" class="hac-col-link">+91 98765 43210</a>
-          <a href="mailto:adityahanuma8@gmail.com" class="hac-col-link">adityahanuma8@gmail.com</a>
+      <div>
+        <div class="hac-contact-info-block">
+          <div class="hac-contact-label">DIRECT EMAIL</div>
+          <a href="mailto:adityahanuma8@gmail.com" class="hac-contact-val">adityahanuma8@gmail.com</a>
         </div>
-
-        <div class="hac-contact-col">
-          <span class="hac-col-title">ELSEWHERE</span>
-          <a href="https://github.com/Hanuaditya" target="_blank" rel="noopener noreferrer" class="hac-col-link">GitHub @Hanuaditya ↗</a>
-          <a href="https://linkedin.com/in/hanumaaditya" target="_blank" rel="noopener noreferrer" class="hac-col-link">LinkedIn @hanumaaditya ↗</a>
-          <a href="https://x.com/hanumaaditya" target="_blank" rel="noopener noreferrer" class="hac-col-link">Twitter / X ↗</a>
+        <div class="hac-contact-info-block">
+          <div class="hac-contact-label">LOCATION &amp; TIMEZONE</div>
+          <div class="hac-contact-val">Bengaluru, Karnataka, India (IST / UTC+5:30)</div>
+        </div>
+        <div class="hac-contact-info-block">
+          <div class="hac-contact-label">NETWORKS &amp; PROFILES</div>
+          <div style="display:flex;gap:18px;margin-top:6px;">
+            <a href="https://github.com/Hanuaditya" target="_blank" rel="noopener noreferrer" class="hac-contact-val" style="color:#60a5fa;">GitHub ↗</a>
+            <a href="https://linkedin.com/in/hanuma-aditya" target="_blank" rel="noopener noreferrer" class="hac-contact-val" style="color:#60a5fa;">LinkedIn ↗</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- INTERACTIVE WOVEN LOOM TYPOGRAPHY CANVAS (HANUMA ADITYA) -->
-    <div class="hac-woven-loom-wrap" aria-label="Interactive Woven Loom Canvas">
-      <canvas id="hac-woven-loom-canvas" class="hac-woven-canvas"></canvas>
+    <!-- BLENDED WOVEN CANVAS: HANUMA ADITYA (TRANSPARENT BACKGROUND BLENDING WITH SITE) -->
+    <div class="hac-woven-loom-wrap">
+      <canvas id="hac-woven-loom-canvas" class="hac-woven-canvas" width="1200" height="260"></canvas>
     </div>
 
+    <!-- FOOTER BAR -->
     <div class="hac-footer-bar">
-      <span>© 2026 HANUMA ADITYA C</span>
-      <span>BUILT WITH NEXT.JS, THREE.JS &amp; GSAP</span>
-      <a href="#hero" class="hac-back-top" onclick="window.hacBackToJourney(); return false;">BACK TO TOP ↑</a>
+      <span>© 2026 HANUMA ADITYA C · CRAFTED WITH DISTINCTION</span>
+      <a href="#Hero" class="hac-back-top" onclick="window.hacBackToJourney(); return false;">RETURN TO TOP ↑</a>
     </div>
   </section>
 

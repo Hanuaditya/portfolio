@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { PROFILE_DATA } from "@/data/portfolioData";
 import { Sparkles, Terminal, Volume2, VolumeX, Mail } from "lucide-react";
+import FloatingMailbox from "@/components/FloatingMailbox";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -103,6 +104,9 @@ export default function Header() {
               </>
             )}
           </button>
+
+          {/* 3D Envelope Mailbox right before Contact button */}
+          <FloatingMailbox email="adityahanuma8@gmail.com" inline />
 
           {/* Quick Contact Action */}
           <button
