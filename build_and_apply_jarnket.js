@@ -7,10 +7,15 @@ const eleB64 = fs.readFileSync('public/img/ele.png').toString('base64');
 const boatB64 = fs.readFileSync('public/img/boat.png').toString('base64');
 const snakeB64 = fs.readFileSync('public/img/snake.png').toString('base64');
 
+// Ensure avatar-halftone.png exists
+if (fs.existsSync('public/full.png') && !fs.existsSync('public/avatar-halftone.png')) {
+  fs.copyFileSync('public/full.png', 'public/avatar-halftone.png');
+}
+
 // 2. Build CSS
 const css = `@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap');
 
-/* ==================== JARNKET INSPIRED STYLING V3 ==================== */
+/* ==================== JARNKET INSPIRED STYLING V4 ==================== */
 .hac-experience-wrap {
   background: #091533;
   background-image: radial-gradient(circle at 50% 15%, #15295c 0%, #0a1637 55%, #060e24 100%);
@@ -145,7 +150,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:
   transform: translateY(-1px);
 }
 
-/* ==================== INTERACTIVE PORTRAIT STAGE (FULL.PNG WOVEN WARP) ==================== */
+/* ==================== CRISP PHOTOGRAPHIC CRT CARD ==================== */
 .hac-portrait-stage {
   width: 100%;
   position: relative;
@@ -153,99 +158,184 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 1rem 3rem;
+  padding: 3rem 1rem 3.5rem;
   box-sizing: border-box;
-}
-
-.hac-portrait-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  perspective: 1000px;
 }
 
 .hac-portrait-container {
   width: 100%;
-  max-width: 480px;
-  height: 640px;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
   position: relative;
   box-sizing: border-box;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 .hac-portrait-card {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #060b17;
-  border: 2px solid #2b5ba8;
-  box-shadow: 0 0 40px rgba(43,91,168,0.45);
+  background: #050b14;
+  border: 2px solid #1c3e74;
+  box-shadow: 0 0 40px rgba(28, 62, 116, 0.35);
   border-radius: 4px;
   overflow: hidden;
+  cursor: crosshair;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
+}
+
+.hac-portrait-card:hover {
+  box-shadow: 0 0 50px rgba(74, 144, 226, 0.45);
 }
 
 .hac-portrait-corner {
   position: absolute;
-  color: #60a5fa;
-  font-size: 16px;
+  color: rgba(74, 144, 226, 0.85);
+  font-family: monospace;
+  font-size: 13px;
   font-weight: 700;
-  z-index: 25;
+  z-index: 30;
   user-select: none;
   pointer-events: none;
   line-height: 1;
 }
 
-.hac-portrait-hud {
+.hac-portrait-hud-left {
   position: absolute;
-  top: 14px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 25;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: #93c5fd;
+  top: 12px;
+  left: 16px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3d7edb;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
+  padding: 3px 8px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
   pointer-events: none;
 }
 
-.hac-portrait-hud-badge {
-  background: rgba(37, 99, 235, 0.35);
-  border: 1px solid rgba(96, 165, 250, 0.5);
+.hac-portrait-hud-right {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #93bbf8;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
   padding: 3px 8px;
-  border-radius: 3px;
-  color: #ffffff;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
+.hac-portrait-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hac-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: contrast(105%) brightness(95%);
+}
+
+.hac-portrait-card:hover .hac-portrait-img {
+  filter: contrast(115%) brightness(105%);
+}
+
+/* CRT Horizontal Scanlines Overlay */
 .hac-portrait-scanlines {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
-  background-size: 100% 3px;
   pointer-events: none;
-  z-index: 15;
-}
-
-.hac-portrait-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  cursor: crosshair;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.6) 0px,
+    rgba(0, 0, 0, 0.6) 1px,
+    transparent 1px,
+    transparent 3px
+  );
   z-index: 10;
 }
 
+/* Subtle Ambient Radial Glow */
+.hac-portrait-ambient-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 35%, rgba(58, 117, 213, 0.18), transparent 70%);
+  pointer-events: none;
+  z-index: 12;
+}
+
+/* Interactive Scanning Laser Line on Hover */
+.hac-portrait-laser {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4a90e2;
+  box-shadow: 0 0 12px #4a90e2;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  top: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hac-portrait-card:hover .hac-portrait-laser {
+  opacity: 0.9;
+  animation: hac-laser-sweep 2.4s linear infinite;
+}
+
+@keyframes hac-laser-sweep {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
 .hac-portrait-footer {
-  margin-top: 1.25rem;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: #93c5fd;
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #4a90e2;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 8px;
+  opacity: 0.85;
+}
+
+.hac-portrait-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a90e2;
+  animation: hac-pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes hac-pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* ==================== SECTIONS COMMON ==================== */
@@ -809,7 +899,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:
     gap: 0.75rem;
   }
   .hac-portrait-container {
-    height: 520px;
+    max-width: 340px;
   }
 }
 `;
@@ -819,10 +909,10 @@ console.log('1. Generated public/jarnket_styles.css');
 
 // 3. Build HTML Structure for Jarnket Sections
 const sectionsHtml = `
-<!-- JARNKET INSPIRED SECTIONS (PORTRAIT, EXPERIENCE, ELEPHANT, TOOLKIT, RECOGNITION, CONTACT) -->
+<!-- JARNKET INSPIRED SECTIONS (CRISP CRT PORTRAIT, EXPERIENCE, ELEPHANT, TOOLKIT, RECOGNITION, CONTACT) -->
 <div id="hac-jarnket-experience" class="hac-experience-wrap">
 
-  <!-- TOP BANNER WITH DIAMOND WEAVE (DOWNLOAD.PNG MATCHING IMAGE 3) -->
+  <!-- TOP BANNER WITH DIAMOND WEAVE (DOWNLOAD.PNG) -->
   <div class="hac-textile-banner">
     <div class="hac-bar-download" aria-hidden="true"></div>
     <div class="hac-textile-caption">
@@ -837,27 +927,32 @@ const sectionsHtml = `
     </div>
   </div>
 
-  <!-- ==================== 00 // INTERACTIVE PORTRAIT STAGE (FULL.PNG WOVEN WARP) ==================== -->
+  <!-- ==================== 00 // CRISP PHOTOGRAPHIC CRT PORTRAIT CARD ==================== -->
   <div class="hac-portrait-stage">
     <div class="hac-portrait-container">
-      <div class="hac-portrait-card">
-        <div class="hac-portrait-corner" style="top:10px;left:10px;">☩</div>
-        <div class="hac-portrait-corner" style="top:10px;right:10px;">☩</div>
-        <div class="hac-portrait-corner" style="bottom:10px;left:10px;">☩</div>
-        <div class="hac-portrait-corner" style="bottom:10px;right:10px;">☩</div>
+      <div id="hac-portrait-tilt-card" class="hac-portrait-card">
+        <!-- Retro Corner HUD Brackets -->
+        <div class="hac-portrait-corner" style="top:10px;left:10px;">┌</div>
+        <div class="hac-portrait-corner" style="top:10px;right:10px;">┐</div>
+        <div class="hac-portrait-corner" style="bottom:10px;left:10px;">└</div>
+        <div class="hac-portrait-corner" style="bottom:10px;right:10px;">┘</div>
 
-        <div class="hac-portrait-hud">
-          <span>FACIAL SCAN // HN.04</span>
-          <span class="hac-portrait-hud-badge">HANUMA ADITYA C</span>
+        <!-- Top Diagnostic Badges -->
+        <div class="hac-portrait-hud-left">FACIAL SCAN // HN.04</div>
+        <div class="hac-portrait-hud-right">HANUMA ADITYA C</div>
+
+        <!-- Crisp Photographic Halftone Image -->
+        <div class="hac-portrait-img-wrap">
+          <img src="/avatar-halftone.png" alt="Hanuma Aditya C Portrait" class="hac-portrait-img" />
+          <div class="hac-portrait-scanlines"></div>
+          <div class="hac-portrait-ambient-glow"></div>
+          <div class="hac-portrait-laser"></div>
         </div>
-
-        <canvas id="hac-portrait-mesh-canvas" class="hac-portrait-canvas" width="480" height="640"></canvas>
-        <div class="hac-portrait-scanlines"></div>
       </div>
     </div>
     <div class="hac-portrait-footer">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
-      <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR ACROSS PORTRAIT TO WARP</span>
+      <span class="hac-portrait-pulse-dot"></span>
+      <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR TO TILT</span>
     </div>
   </div>
 
@@ -1136,7 +1231,6 @@ if (styleStart !== -1) {
   const styleEnd = indexHtml.indexOf('</style>', styleStart) + 8;
   indexHtml = indexHtml.slice(0, styleStart) + '<style id="hac-jarnket-styles">\n' + css + '\n</style>' + indexHtml.slice(styleEnd);
 } else {
-  // Insert before </head>
   const headEnd = indexHtml.indexOf('</head>');
   indexHtml = indexHtml.slice(0, headEnd) + '<style id="hac-jarnket-styles">\n' + css + '\n</style>\n' + indexHtml.slice(headEnd);
 }
@@ -1152,7 +1246,7 @@ if (winStart !== -1) {
 
 // C. Update <script id="hac-runtime-bundle"> with:
 // - Header Mailbox pinned right before Contact Me in div[data-experience-chrome="true"]
-// - Interactive Portrait Mesh Warp running on public/full.png
+// - Crisp Photographic CRT Portrait Card with smooth 3D tilt tracking
 // - Blended Woven Canvas for Hanuma Aditya
 const runtimeScript = `
 <script id="hac-runtime-bundle">
@@ -1161,9 +1255,11 @@ const runtimeScript = `
 
   // ==================== 1. HEADER MAILBOX BEFORE CONTACT ME ====================
   function ensureHeaderMailbox() {
-    if (document.getElementById('hac-header-mailbox')) return;
+    if (document.getElementById('hac-header-mailbox')) {
+      updateHeaderMailboxPos();
+      return;
+    }
 
-    // Target the experience chrome header which holds Contact Me and menu trigger
     const chrome = document.querySelector('div[data-experience-chrome="true"]');
     if (!chrome) return;
 
@@ -1261,133 +1357,39 @@ const runtimeScript = `
     }
   }
 
-  // ==================== 2. INTERACTIVE PORTRAIT MESH WARP CANVAS ====================
-  function initPortraitMeshCanvas() {
-    const canvas = document.getElementById('hac-portrait-mesh-canvas');
-    if (!canvas || canvas.__inited) return;
-    canvas.__inited = true;
+  // ==================== 2. CRISP PHOTOGRAPHIC CRT PORTRAIT 3D TILT ====================
+  function initPortraitTiltCard() {
+    const card = document.getElementById('hac-portrait-tilt-card');
+    if (!card || card.__tiltInited) return;
+    card.__tiltInited = true;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    let targetRotX = 0, targetRotY = 0;
+    let curRotX = 0, curRotY = 0;
 
-    const W = canvas.width = 480;
-    const H = canvas.height = 640;
+    card.addEventListener('mousemove', function(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const normX = (x / rect.width) * 2 - 1;
+      const normY = (y / rect.height) * 2 - 1;
 
-    let points = [];
-    let isReady = false;
-    const mouse = { x: -1000, y: -1000, radius: 110 };
-
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-
-    img.onload = function() {
-      const off = document.createElement('canvas');
-      off.width = W;
-      off.height = H;
-      const offCtx = off.getContext('2d');
-      if (!offCtx) return;
-
-      // Draw and sample full.png
-      offCtx.drawImage(img, 0, 0, W, H);
-      const imgData = offCtx.getImageData(0, 0, W, H).data;
-
-      const step = 8;
-      points = [];
-
-      for (let y = 4; y < H; y += step) {
-        for (let x = 4; x < W; x += step) {
-          const idx = (y * W + x) * 4;
-          const r = imgData[idx];
-          const g = imgData[idx + 1];
-          const b = imgData[idx + 2];
-
-          // Sample luminance & compute warp intensity
-          const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-          const contrastLum = Math.max(0, Math.min(1, (lum - 0.5) * 1.35 + 0.5));
-          const a = 1 - contrastLum;
-          const intensity = Math.max(0.12, Math.min(1, a * 1.3));
-
-          const col = Math.floor(x / step);
-          const row = Math.floor(y / step);
-          const warp = (col + row) % 2 === 0;
-
-          const rad = Math.max(1.5, Math.min(4.5, intensity * (step * 0.55)));
-          const w = warp ? rad * 0.85 : rad * 2.2;
-          const h = warp ? rad * 2.2 : rad * 0.85;
-
-          // High-contrast luminous cyan-blue palette
-          const redVal = Math.round(90 + 150 * intensity);
-          const greenVal = Math.round(140 + 110 * intensity);
-          const blueVal = 255;
-          const alphaVal = 0.35 + 0.65 * intensity;
-
-          points.push({
-            x: x,
-            y: y,
-            ox: x,
-            oy: y,
-            vx: 0,
-            vy: 0,
-            w: w,
-            h: h,
-            color: 'rgba(' + redVal + ',' + greenVal + ',' + blueVal + ',' + alphaVal.toFixed(2) + ')'
-          });
-        }
-      }
-
-      isReady = true;
-      console.log('[HAC] Portrait mesh initialized with ' + points.length + ' stitches');
-      renderLoop();
-    };
-
-    img.src = '/full.png';
-
-    canvas.addEventListener('mousemove', function(e) {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      mouse.x = (e.clientX - rect.left) * scaleX;
-      mouse.y = (e.clientY - rect.top) * scaleY;
+      targetRotX = -normY * 14;
+      targetRotY = normX * 14;
     });
 
-    canvas.addEventListener('mouseleave', function() {
-      mouse.x = -1000;
-      mouse.y = -1000;
+    card.addEventListener('mouseleave', function() {
+      targetRotX = 0;
+      targetRotY = 0;
     });
 
-    function renderLoop() {
-      if (!isReady) return;
-      ctx.clearRect(0, 0, W, H);
-
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-
-        // Cursor push interaction
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist < mouse.radius && dist > 0) {
-          const force = (1 - dist / mouse.radius) * 3.5;
-          p.vx += (dx / dist) * force;
-          p.vy += (dy / dist) * force;
-        }
-
-        // Elastic spring physics back to home position
-        p.vx += (p.ox - p.x) * 0.09;
-        p.vy += (p.oy - p.y) * 0.09;
-        p.vx *= 0.82;
-        p.vy *= 0.82;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        ctx.fillStyle = p.color;
-        ctx.fillRect(p.x - p.w / 2, p.y - p.h / 2, p.w, p.h);
-      }
-
-      requestAnimationFrame(renderLoop);
+    function tick() {
+      curRotX += (targetRotX - curRotX) * 0.12;
+      curRotY += (targetRotY - curRotY) * 0.12;
+      card.style.transform = 'rotateX(' + curRotX.toFixed(2) + 'deg) rotateY(' + curRotY.toFixed(2) + 'deg)';
+      requestAnimationFrame(tick);
     }
+    requestAnimationFrame(tick);
+    console.log('[HAC] Crisp photographic CRT card 3D tilt tracking initialized');
   }
 
   // ==================== 3. MOUNT JARNKET SECTIONS ====================
@@ -1419,9 +1421,11 @@ const runtimeScript = `
 
     if (!document.getElementById('hac-jarnket-experience')) {
       mount.innerHTML = sectionsContent;
-      initPortraitMeshCanvas();
+      initPortraitTiltCard();
       initWovenCanvas();
-      console.log('[HAC] Mounted Jarnket sections, portrait mesh & woven canvas');
+      console.log('[HAC] Mounted Jarnket sections, photographic CRT portrait & woven canvas');
+    } else {
+      initPortraitTiltCard();
     }
     return true;
   }
@@ -1501,7 +1505,6 @@ const runtimeScript = `
     }
 
     function animate() {
-      // Clear to transparent so background blends directly into website background
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -1633,7 +1636,7 @@ const runtimeScript = `
       ensureHeaderMailbox();
       removeOldFloatingMailbox();
       mountJarnket();
-      initPortraitMeshCanvas();
+      initPortraitTiltCard();
       setupMountScrollDelegation();
       if (attempts > 30) clearInterval(interval);
     }, 200);
@@ -1645,7 +1648,7 @@ const runtimeScript = `
       if (tail && !document.getElementById('hac-jarnket-experience')) {
         mountJarnket();
       }
-      initPortraitMeshCanvas();
+      initPortraitTiltCard();
       setupMountScrollDelegation();
     });
     observer.observe(document.body, { childList: true, subtree: true });
@@ -1674,4 +1677,4 @@ if (bundleStart !== -1) {
 indexHtml = indexHtml.replace(/<aside class="hac-floating-mailbox-wrap"[\s\S]*?<\/aside>/g, '');
 
 fs.writeFileSync('public/index.html', indexHtml, 'utf8');
-console.log('3. Updated public/index.html successfully');
+console.log('3. Updated public/index.html with crisp photographic CRT card & 3D tilt');

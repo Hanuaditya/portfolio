@@ -1,63 +1,116 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
+import { motion, useSpring } from "framer-motion";
 
 export default function InteractivePhoto() {
-  const [isGlitching, setIsGlitching] = useState(false);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Physics-based spring config for smooth 3D tilt tracking
+  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
+  const rotateX = useSpring(0, springConfig);
+  const rotateY = useSpring(0, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Normalize from -1 to 1
+    const normX = (x / rect.width) * 2 - 1;
+    const normY = (y / rect.height) * 2 - 1;
+
+    // Smooth tilt angles (-14 to +14 deg)
+    rotateX.set(-normY * 14);
+    rotateY.set(normX * 14);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   return (
-    <div 
-      className="relative w-full max-w-sm aspect-[3/4] border-4 border-[#2b5ba8] shadow-[0_0_25px_rgba(43,91,168,0.2)] bg-[#070e17] overflow-hidden group cursor-pointer"
-      onMouseEnter={() => setIsGlitching(true)}
-      onMouseLeave={() => setIsGlitching(false)}
-    >
-      {/* Decorative Outer Ethnic Pixel Corners */}
-      <div className="absolute top-2 left-2 text-[#2b5ba8] font-mono text-[10px] z-20">☩</div>
-      <div className="absolute top-2 right-2 text-[#2b5ba8] font-mono text-[10px] z-20">☩</div>
-      <div className="absolute bottom-2 left-2 text-[#2b5ba8] font-mono text-[10px] z-20">☩</div>
-      <div className="absolute bottom-2 right-2 text-[#2b5ba8] font-mono text-[10px] z-20">☩</div>
+    <div className="relative w-full flex flex-col items-center justify-center p-4 select-none [perspective:1000px]">
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        className="relative w-full max-w-[380px] md:max-w-[420px] aspect-[3/4] rounded-sm border-2 border-[#1c3e74] bg-[#050b14] shadow-[0_0_40px_rgba(28,62,116,0.35)] overflow-hidden cursor-crosshair group"
+      >
+        {/* Retro Corner HUD Brackets */}
+        <div className="absolute top-2.5 left-2.5 z-30 font-mono text-[10px] text-[#4a90e2]/80 leading-none pointer-events-none">
+          ┌
+        </div>
+        <div className="absolute top-2.5 right-2.5 z-30 font-mono text-[10px] text-[#4a90e2]/80 leading-none pointer-events-none">
+          ┐
+        </div>
+        <div className="absolute bottom-2.5 left-2.5 z-30 font-mono text-[10px] text-[#4a90e2]/80 leading-none pointer-events-none">
+          └
+        </div>
+        <div className="absolute bottom-2.5 right-2.5 z-30 font-mono text-[10px] text-[#4a90e2]/80 leading-none pointer-events-none">
+          ┘
+        </div>
 
-      {/* Retro Sci-fi CRT Grid Screen Layers */}
-      <div className="absolute inset-0 z-10 grid-pattern mix-blend-overlay pointer-events-none" />
-      <div className="absolute inset-0 z-10 scanlines-overlay opacity-60 mix-blend-color-burn pointer-events-none" />
-
-      {/* Cybernetic HUD Frame */}
-      <div className="absolute bottom-4 left-4 z-20 bg-black/65 border border-[#2b5ba8]/60 px-3 py-1.5 backdrop-blur-sm">
-        <span className="font-mono text-[9px] text-[#2b5ba8] uppercase block tracking-widest">
+        {/* Top Diagnostic Badges */}
+        <div className="absolute top-3 left-4 z-20 font-mono text-[9px] uppercase tracking-wider text-[#3d7edb] bg-[#070f1e]/80 border border-[#1b3d73]/60 px-2 py-0.5 rounded-xs backdrop-blur-xs">
           FACIAL SCAN // HN.04
-        </span>
-        <span className="font-mono text-xs text-[#efeade] font-bold block uppercase mt-0.5">
+        </div>
+        <div className="absolute top-3 right-4 z-20 font-mono text-[9px] uppercase tracking-wider text-[#93bbf8] bg-[#070f1e]/80 border border-[#1b3d73]/60 px-2 py-0.5 rounded-xs backdrop-blur-xs">
           HANUMA ADITYA C
-        </span>
-      </div>
+        </div>
 
-      {/* Blue Duotone Photographic Treatment Container */}
-      <div className={`relative w-full h-full transition-transform duration-500 scale-100 group-hover:scale-102 ${isGlitching ? 'brightness-125 contrast-110' : ''}`}>
-        <Image 
-          alt="Hanuma Aditya C Blazer Portrait" 
-          className="object-cover transition-all duration-300 filter grayscale contrast-125 brightness-95" 
-          fill 
-          priority 
-          sizes="(max-width: 768px) 100vw, 384px" 
-          src="/avatar-blazer.png"
-        />
-        
-        {/* Blue color layer overlays */}
-        <div className="absolute inset-0 bg-[#16386e] mix-blend-multiply opacity-85 transition-opacity duration-300 group-hover:opacity-75" />
-        <div className="absolute inset-0 bg-[#0c1e3a] mix-blend-lighten opacity-30 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#060b12] to-transparent z-15" />
-      </div>
+        {/* Crisp Halftone Image */}
+        <div className="relative w-full h-full">
+          <Image
+            src="/avatar-halftone.png"
+            alt="Hanuma Aditya C Portrait"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 420px"
+            className={`object-cover object-center transition-all duration-300 filter ${
+              isHovered ? "contrast-115 brightness-105" : "contrast-105 brightness-95"
+            }`}
+          />
 
-      {/* On-Hover Interactive Horizontal Scan Matrix Line */}
-      <div className="absolute left-0 right-0 h-[1.5px] bg-[#3a75d5] opacity-0 group-hover:opacity-100 animate-[scan_2.2s_linear_infinite] shadow-[0_0_10px_#3a75d5] z-15 pointer-events-none" />
-      <style jsx global>{`
-        @keyframes scan {
-          0% { top: 0%; }
-          50% { top: 100%; }
-          100% { top: 0%; }
-        }
-      `}</style>
+          {/* CRT Horizontal Scanlines Overlay */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-30 mix-blend-overlay"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(0deg, rgba(0,0,0,0.6) 0px, rgba(0,0,0,0.6) 1px, transparent 1px, transparent 3px)",
+            }}
+          />
+
+          {/* Subtle Ambient Radial Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(58,117,213,0.18),transparent_70%)] pointer-events-none" />
+
+          {/* Interactive Scanning Line on Hover */}
+          <motion.div
+            animate={isHovered ? { top: ["0%", "100%", "0%"] } : { top: "0%" }}
+            transition={{ repeat: Infinity, duration: 2.4, ease: "linear" }}
+            className={`absolute inset-x-0 h-[2px] bg-[#4a90e2] shadow-[0_0_12px_#4a90e2] pointer-events-none z-20 ${
+              isHovered ? "opacity-90" : "opacity-0"
+            }`}
+          />
+        </div>
+      </motion.div>
+
+      {/* Subtext Caption */}
+      <div className="mt-3 font-mono text-[10px] tracking-widest text-[#4a90e2] uppercase flex items-center gap-1.5 opacity-80">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#4a90e2] animate-pulse" />
+        <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR TO TILT</span>
+      </div>
     </div>
   );
 }

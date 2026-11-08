@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap');
 
-/* ==================== JARNKET INSPIRED STYLING V3 ==================== */
+/* ==================== JARNKET INSPIRED STYLING V4 ==================== */
 .hac-experience-wrap {
   background: #091533;
   background-image: radial-gradient(circle at 50% 15%, #15295c 0%, #0a1637 55%, #060e24 100%);
@@ -135,7 +135,7 @@
   transform: translateY(-1px);
 }
 
-/* ==================== INTERACTIVE PORTRAIT STAGE (FULL.PNG WOVEN WARP) ==================== */
+/* ==================== CRISP PHOTOGRAPHIC CRT CARD ==================== */
 .hac-portrait-stage {
   width: 100%;
   position: relative;
@@ -143,99 +143,184 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 1rem 3rem;
+  padding: 3rem 1rem 3.5rem;
   box-sizing: border-box;
-}
-
-.hac-portrait-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  perspective: 1000px;
 }
 
 .hac-portrait-container {
   width: 100%;
-  max-width: 480px;
-  height: 640px;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
   position: relative;
   box-sizing: border-box;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 .hac-portrait-card {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #060b17;
-  border: 2px solid #2b5ba8;
-  box-shadow: 0 0 40px rgba(43,91,168,0.45);
+  background: #050b14;
+  border: 2px solid #1c3e74;
+  box-shadow: 0 0 40px rgba(28, 62, 116, 0.35);
   border-radius: 4px;
   overflow: hidden;
+  cursor: crosshair;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease;
+}
+
+.hac-portrait-card:hover {
+  box-shadow: 0 0 50px rgba(74, 144, 226, 0.45);
 }
 
 .hac-portrait-corner {
   position: absolute;
-  color: #60a5fa;
-  font-size: 16px;
+  color: rgba(74, 144, 226, 0.85);
+  font-family: monospace;
+  font-size: 13px;
   font-weight: 700;
-  z-index: 25;
+  z-index: 30;
   user-select: none;
   pointer-events: none;
   line-height: 1;
 }
 
-.hac-portrait-hud {
+.hac-portrait-hud-left {
   position: absolute;
-  top: 14px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 25;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: #93c5fd;
+  top: 12px;
+  left: 16px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3d7edb;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
+  padding: 3px 8px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
   pointer-events: none;
 }
 
-.hac-portrait-hud-badge {
-  background: rgba(37, 99, 235, 0.35);
-  border: 1px solid rgba(96, 165, 250, 0.5);
+.hac-portrait-hud-right {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #93bbf8;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
   padding: 3px 8px;
-  border-radius: 3px;
-  color: #ffffff;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
+.hac-portrait-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hac-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: contrast(105%) brightness(95%);
+}
+
+.hac-portrait-card:hover .hac-portrait-img {
+  filter: contrast(115%) brightness(105%);
+}
+
+/* CRT Horizontal Scanlines Overlay */
 .hac-portrait-scanlines {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
-  background-size: 100% 3px;
   pointer-events: none;
-  z-index: 15;
-}
-
-.hac-portrait-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  cursor: crosshair;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.6) 0px,
+    rgba(0, 0, 0, 0.6) 1px,
+    transparent 1px,
+    transparent 3px
+  );
   z-index: 10;
 }
 
+/* Subtle Ambient Radial Glow */
+.hac-portrait-ambient-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 35%, rgba(58, 117, 213, 0.18), transparent 70%);
+  pointer-events: none;
+  z-index: 12;
+}
+
+/* Interactive Scanning Laser Line on Hover */
+.hac-portrait-laser {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #4a90e2;
+  box-shadow: 0 0 12px #4a90e2;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  top: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hac-portrait-card:hover .hac-portrait-laser {
+  opacity: 0.9;
+  animation: hac-laser-sweep 2.4s linear infinite;
+}
+
+@keyframes hac-laser-sweep {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
 .hac-portrait-footer {
-  margin-top: 1.25rem;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: #93c5fd;
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #4a90e2;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 8px;
+  opacity: 0.85;
+}
+
+.hac-portrait-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a90e2;
+  animation: hac-pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes hac-pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* ==================== SECTIONS COMMON ==================== */
@@ -799,6 +884,6 @@
     gap: 0.75rem;
   }
   .hac-portrait-container {
-    height: 520px;
+    max-width: 340px;
   }
 }

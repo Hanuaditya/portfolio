@@ -1,8 +1,8 @@
 
-<!-- JARNKET INSPIRED SECTIONS (PORTRAIT, EXPERIENCE, ELEPHANT, TOOLKIT, RECOGNITION, CONTACT) -->
+<!-- JARNKET INSPIRED SECTIONS (CRISP CRT PORTRAIT, EXPERIENCE, ELEPHANT, TOOLKIT, RECOGNITION, CONTACT) -->
 <div id="hac-jarnket-experience" class="hac-experience-wrap">
 
-  <!-- TOP BANNER WITH DIAMOND WEAVE (DOWNLOAD.PNG MATCHING IMAGE 3) -->
+  <!-- TOP BANNER WITH DIAMOND WEAVE (DOWNLOAD.PNG) -->
   <div class="hac-textile-banner">
     <div class="hac-bar-download" aria-hidden="true"></div>
     <div class="hac-textile-caption">
@@ -17,27 +17,32 @@
     </div>
   </div>
 
-  <!-- ==================== 00 // INTERACTIVE PORTRAIT STAGE (FULL.PNG WOVEN WARP) ==================== -->
+  <!-- ==================== 00 // CRISP PHOTOGRAPHIC CRT PORTRAIT CARD ==================== -->
   <div class="hac-portrait-stage">
     <div class="hac-portrait-container">
-      <div class="hac-portrait-card">
-        <div class="hac-portrait-corner" style="top:10px;left:10px;">☩</div>
-        <div class="hac-portrait-corner" style="top:10px;right:10px;">☩</div>
-        <div class="hac-portrait-corner" style="bottom:10px;left:10px;">☩</div>
-        <div class="hac-portrait-corner" style="bottom:10px;right:10px;">☩</div>
+      <div id="hac-portrait-tilt-card" class="hac-portrait-card">
+        <!-- Retro Corner HUD Brackets -->
+        <div class="hac-portrait-corner" style="top:10px;left:10px;">┌</div>
+        <div class="hac-portrait-corner" style="top:10px;right:10px;">┐</div>
+        <div class="hac-portrait-corner" style="bottom:10px;left:10px;">└</div>
+        <div class="hac-portrait-corner" style="bottom:10px;right:10px;">┘</div>
 
-        <div class="hac-portrait-hud">
-          <span>FACIAL SCAN // HN.04</span>
-          <span class="hac-portrait-hud-badge">HANUMA ADITYA C</span>
+        <!-- Top Diagnostic Badges -->
+        <div class="hac-portrait-hud-left">FACIAL SCAN // HN.04</div>
+        <div class="hac-portrait-hud-right">HANUMA ADITYA C</div>
+
+        <!-- Crisp Photographic Halftone Image -->
+        <div class="hac-portrait-img-wrap">
+          <img src="/avatar-halftone.png" alt="Hanuma Aditya C Portrait" class="hac-portrait-img" />
+          <div class="hac-portrait-scanlines"></div>
+          <div class="hac-portrait-ambient-glow"></div>
+          <div class="hac-portrait-laser"></div>
         </div>
-
-        <canvas id="hac-portrait-mesh-canvas" class="hac-portrait-canvas" width="480" height="640"></canvas>
-        <div class="hac-portrait-scanlines"></div>
       </div>
     </div>
     <div class="hac-portrait-footer">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
-      <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR ACROSS PORTRAIT TO WARP</span>
+      <span class="hac-portrait-pulse-dot"></span>
+      <span>INTERACTIVE STIPPLE MESH · MOVE CURSOR TO TILT</span>
     </div>
   </div>
 
