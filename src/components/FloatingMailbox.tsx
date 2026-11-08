@@ -55,11 +55,11 @@ export default function FloatingMailbox({ email = "adityahanuma8@gmail.com" }: F
   };
 
   return (
-    <aside aria-label="Quick contact" className="fixed bottom-6 right-6 z-50 pointer-events-auto">
+    <aside aria-label="Quick contact" className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
       <div className="relative [perspective:1000px]">
         {/* Floating Tooltip */}
         <div
-          className={`absolute bottom-full right-0 mb-3 px-3 py-1.5 rounded-full bg-[#11161f] border border-[#232d3d] text-[#efeade] text-[11px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
+          className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 rounded-full bg-[#11161f] border border-[#232d3d] text-[#efeade] text-[11px] font-mono whitespace-nowrap shadow-xl transition-all duration-300 pointer-events-none ${
             isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
           }`}
         >
@@ -140,3 +140,4 @@ export default function FloatingMailbox({ email = "adityahanuma8@gmail.com" }: F
     </aside>
   );
 }
+

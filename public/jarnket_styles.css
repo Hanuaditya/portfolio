@@ -757,7 +757,9 @@
 .hac-floating-mailbox-wrap {
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
   z-index: 9999999 !important;
   pointer-events: auto;
   perspective: 1000px;
@@ -766,7 +768,9 @@
 .hac-mailbox-tooltip {
   position: absolute;
   bottom: calc(100% + 12px);
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  right: auto;
   background: #11161f;
   border: 1px solid #232d3d;
   color: #efeade;
@@ -778,13 +782,12 @@
   box-shadow: 0 10px 25px rgba(0,0,0,0.45);
   pointer-events: none;
   opacity: 0;
-  transform: translateY(4px);
   transition: opacity 0.25s, transform 0.25s;
 }
 
 .hac-floating-mailbox-wrap:hover .hac-mailbox-tooltip {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .hac-mailbox-anchor {
