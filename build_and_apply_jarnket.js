@@ -1308,16 +1308,61 @@ console.log('2. Generated public/jarnket_sections.html');
 // 4. Update public/index.html cleanly
 let indexHtml = fs.readFileSync('public/index.html', 'utf8');
 
-// Ensure correct head starting
+// First, strip any existing hac-jarnket-styles, hac-hide-credits, title-lock, or jarnket_styles.css links
+indexHtml = indexHtml.replace(/<style id="hac-jarnket-styles"[\s\S]*?<\/style>/gi, '');
+indexHtml = indexHtml.replace(/<style id="hac-hide-credits"[\s\S]*?<\/style>/gi, '');
+indexHtml = indexHtml.replace(/<link[^>]*href=["']\/?jarnket_styles\.css["'][^>]*>/gi, '');
+indexHtml = indexHtml.replace(/<script id="hac-title-lock"[\s\S]*?<\/script>/gi, '');
+indexHtml = indexHtml.replace(/<title>[\s\S]*?<\/title>/gi, '');
+indexHtml = indexHtml.replace(/<link[^>]*rel=["'](?:icon|shortcut icon|apple-touch-icon)["'][^>]*>/gi, '');
+
+// Clean any malformed closing html tags at the end of the file
+const bodyCloseIdx = indexHtml.indexOf('</body>');
+if (bodyCloseIdx !== -1) {
+  const afterBody = indexHtml.slice(bodyCloseIdx);
+  const htmlCloseMatch = afterBody.match(/<\/html\s*>/i);
+  if (htmlCloseMatch) {
+    indexHtml = indexHtml.slice(0, bodyCloseIdx) + '</body></html>';
+  } else {
+    // If </html was truncated or corrupted
+    indexHtml = indexHtml.slice(0, bodyCloseIdx) + '</body></html>';
+  }
+}
+
+// Prepare pristine head content (strictly inside <head>)
 const headMatch = indexHtml.match(/<head[\s\S]*?>/i);
 if (headMatch) {
   const headOpenIdx = indexHtml.indexOf(headMatch[0]) + headMatch[0].length;
-  const correctMetaAndTitle = `
+  
+  const headInjections = `
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hanuma Aditya — Creative Product Engineer</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="stylesheet" href="/jarnket_styles.css" />
+<style id="hac-hide-credits">
+[data-closing-credits],
+.-_ZYGG_card,
+.-_ZYGG_picture,
+.-_ZYGG_composition,
+.-_ZYGG_backdrop,
+.Rk2J4a_creditsAperture {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: -9999px !important;
+}
+</style>
+<style id="hac-jarnket-styles">
+${css}
+</style>
 <script id="hac-title-lock">
 document.title = "Hanuma Aditya — Creative Product Engineer";
 try {
@@ -1341,56 +1386,7 @@ window.hacBackToJourney = function() {
 </script>
 `;
 
-  // Remove old lock script if present
-  const lockStart = indexHtml.indexOf('<script id="hac-title-lock">');
-  if (lockStart !== -1) {
-    const lockEnd = indexHtml.indexOf('</script>', lockStart) + 9;
-    indexHtml = indexHtml.slice(0, lockStart) + indexHtml.slice(lockEnd);
-  }
-
-  // Remove old titles or links from head
-  indexHtml = indexHtml.replace(/<title>[\s\S]*?<\/title>/gi, '');
-  indexHtml = indexHtml.replace(/<link[^>]*rel=["'](?:icon|shortcut icon|apple-touch-icon)["'][^>]*>/gi, '');
-
-  const newHeadOpenIdx = indexHtml.indexOf(headMatch[0]) + headMatch[0].length;
-  indexHtml = indexHtml.slice(0, newHeadOpenIdx) + correctMetaAndTitle + indexHtml.slice(newHeadOpenIdx);
-}
-
-// Ensure <style id="hac-jarnket-styles"> is cleanly updated
-const styleTagStart = indexHtml.indexOf('<style id="hac-jarnket-styles">');
-if (styleTagStart !== -1) {
-  const styleTagEnd = indexHtml.indexOf('</style>', styleTagStart) + 8;
-  indexHtml = indexHtml.slice(0, styleTagStart) + '<style id="hac-jarnket-styles">\n' + css + '\n</style>' + indexHtml.slice(styleTagEnd);
-} else {
-  const headEnd = indexHtml.indexOf('</head>');
-  indexHtml = indexHtml.slice(0, headEnd) + '<style id="hac-jarnket-styles">\n' + css + '\n</style>\n' + indexHtml.slice(headEnd);
-}
-
-// Ensure <style id="hac-hide-credits"> is in head
-if (!indexHtml.includes('id="hac-hide-credits"')) {
-  const hideCreditsStyle = `
-<style id="hac-hide-credits">
-[data-closing-credits],
-.-_ZYGG_card,
-.-_ZYGG_picture,
-.-_ZYGG_composition,
-.-_ZYGG_backdrop,
-.Rk2J4a_creditsAperture {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  height: 0 !important;
-  width: 0 !important;
-  max-height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  top: -9999px !important;
-}
-</style>
-`;
-  const headEnd = indexHtml.indexOf('</head>');
-  indexHtml = indexHtml.slice(0, headEnd) + hideCreditsStyle + indexHtml.slice(headEnd);
+  indexHtml = indexHtml.slice(0, headOpenIdx) + headInjections + indexHtml.slice(headOpenIdx);
 }
 
 // 5. Zero-Lag 60 FPS Runtime Bundle Script

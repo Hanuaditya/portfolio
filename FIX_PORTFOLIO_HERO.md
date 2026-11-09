@@ -22,3 +22,4 @@ Removes the stale brown temple credits section ("The end of this film / Abhay Ro
 
 ## 4. Name Harmonization
 Replaced all legacy occurrences of "Abhay Rohit" with "Hanuma Aditya" across all pages, titles, meta tags, and favicons (`HA`).
+
