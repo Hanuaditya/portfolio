@@ -1,58 +1,18 @@
-"use client";
-
-import Cursor from "@/components/Cursor";
-import Header from "@/components/Header";
-import ChapterRail from "@/components/ChapterRail";
-import Hero from "@/components/Hero";
-import UnshellSection from "@/components/UnshellSection";
-import HorizonMeetSection from "@/components/HorizonMeetSection";
-import ArchitectureSection from "@/components/ArchitectureSection";
-import TechStackSection from "@/components/TechStackSection";
-import AfterHoursSection from "@/components/AfterHoursSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import InteractiveHeroPortrait from "@/components/InteractiveHeroPortrait";
+import AfterHours from "@/components/AfterHours";
+import FooterNameSection from "@/components/FooterNameSection";
 
 export default function Home() {
   return (
-    <main
-      id="quiet-main"
-      className="relative min-h-screen bg-[#07090d] text-[#efeade] selection:bg-[#efeade] selection:text-[#07090d]"
-    >
-      {/* Hardware-accelerated film noise grain overlay */}
-      <div className="noise-overlay" />
+    <main className="bg-[#040810] min-h-screen text-[#efeade] overflow-x-hidden selection:bg-[#efeade] selection:text-[#040810]">
+      {/* 1. Hero Halftone Card (60 FPS GPU-accelerated) */}
+      <InteractiveHeroPortrait />
 
-      {/* Spring-damped magnetic cursor follower */}
-      <Cursor />
+      {/* 2. After Hours 3D & Video Chapters (Directly after Hero) */}
+      <AfterHours />
 
-      {/* Top Wordmark Navigation & Status Header */}
-      <Header />
-
-      {/* Chapter Navigator Rail (01—07) */}
-      <ChapterRail />
-
-      {/* CHAPTER 01 // Introduction & Kinetic Split-Type Hero */}
-      <Hero />
-
-      {/* CHAPTER 02 // Flagship 1: Unshell Autonomous AML & KYB Graph */}
-      <UnshellSection />
-
-      {/* CHAPTER 03 // System 02: Horizon Meet & Veridian WorkOS */}
-      <HorizonMeetSection />
-
-      {/* CHAPTER 04 // Systems Architecture & Engineering Philosophy */}
-      <ArchitectureSection />
-
-      {/* CHAPTER 05 // Technical Capabilities & Matrix */}
-      <TechStackSection />
-
-      {/* CHAPTER 06 // EvoCode Platform, Accreditations & Experience */}
-      <AfterHoursSection />
-
-      {/* CHAPTER 07 // Terminal Reachout & Direct Line */}
-      <ContactSection />
-
-      {/* Architectural Colophon & Footer */}
-      <Footer />
+      {/* 3. Footer with Textile Name Banner & 3D Envelope */}
+      <FooterNameSection />
     </main>
   );
 }

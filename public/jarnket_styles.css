@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap');
 
-/* ==================== JARNKET INSPIRED STYLING V4 ==================== */
+/* ==================== JARNKET INSPIRED STYLING V6 (60 FPS LAG-FREE) ==================== */
 .hac-experience-wrap {
   background: #091533;
   background-image: radial-gradient(circle at 50% 15%, #15295c 0%, #0a1637 55%, #060e24 100%);
@@ -135,11 +135,11 @@
   transform: translateY(-1px);
 }
 
-/* ==================== CRISP PHOTOGRAPHIC CRT CARD ==================== */
+/* ==================== 60 FPS ZERO-LAG HERO PORTRAIT (EXACT FRAMING) ==================== */
 .hac-portrait-stage {
   width: 100%;
   position: relative;
-  background: #070e1c;
+  background: #040810;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -148,86 +148,74 @@
   perspective: 1000px;
 }
 
+/* Architectural Grid Backdrop */
+.hac-portrait-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(27, 61, 117, 0.15) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(27, 61, 117, 0.15) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
 .hac-portrait-container {
   width: 100%;
-  max-width: 420px;
-  aspect-ratio: 3 / 4;
+  max-width: 410px;
   position: relative;
   box-sizing: border-box;
   margin: 0 auto;
   perspective: 1000px;
+  z-index: 10;
 }
 
 .hac-portrait-card {
   position: relative;
   width: 100%;
-  height: 100%;
-  background: #050b14;
+  background: #070e1c;
   border: 2px solid #1c3e74;
-  box-shadow: 0 0 40px rgba(28, 62, 116, 0.35);
+  box-shadow: 0 0 60px rgba(27, 61, 117, 0.35);
   border-radius: 4px;
   overflow: hidden;
   cursor: crosshair;
   transform-style: preserve-3d;
-  transition: box-shadow 0.3s ease;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
 }
 
-.hac-portrait-card:hover {
-  box-shadow: 0 0 50px rgba(74, 144, 226, 0.45);
-}
-
-.hac-portrait-corner {
-  position: absolute;
-  color: rgba(74, 144, 226, 0.85);
-  font-family: monospace;
-  font-size: 13px;
-  font-weight: 700;
-  z-index: 30;
+/* Top Diamond Band */
+.hac-top-diamond-band {
+  width: 100%;
+  height: 28px;
+  background: #070e1c;
+  border-bottom: 1px solid #1b3d75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
   user-select: none;
-  pointer-events: none;
-  line-height: 1;
 }
 
-.hac-portrait-hud-left {
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  z-index: 20;
-  font-family: monospace;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+.hac-diamond-runner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: #3d7edb;
-  background: rgba(7, 15, 30, 0.85);
-  border: 1px solid rgba(27, 61, 115, 0.6);
-  padding: 3px 8px;
-  border-radius: 2px;
-  backdrop-filter: blur(4px);
-  pointer-events: none;
-}
-
-.hac-portrait-hud-right {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  z-index: 20;
   font-family: monospace;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #93bbf8;
-  background: rgba(7, 15, 30, 0.85);
-  border: 1px solid rgba(27, 61, 115, 0.6);
-  padding: 3px 8px;
-  border-radius: 2px;
-  backdrop-filter: blur(4px);
-  pointer-events: none;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  opacity: 0.9;
+  white-space: nowrap;
 }
 
+/* Halftone Portrait Viewport */
 .hac-portrait-img-wrap {
   position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  background: #03060c;
   overflow: hidden;
 }
 
@@ -237,12 +225,62 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: filter 0.3s ease, transform 0.3s ease;
+  transition: filter 0.3s ease;
   filter: contrast(105%) brightness(95%);
 }
 
 .hac-portrait-card:hover .hac-portrait-img {
   filter: contrast(115%) brightness(105%);
+}
+
+/* Retro Corner HUD Brackets */
+.hac-portrait-corner {
+  position: absolute;
+  color: rgba(74, 144, 226, 0.85);
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 30;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Top Diagnostic Badges */
+.hac-portrait-hud-left {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3d7edb;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
+  padding: 2px 7px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.hac-portrait-hud-right {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 20;
+  font-family: monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #93bbf8;
+  background: rgba(7, 15, 30, 0.85);
+  border: 1px solid rgba(27, 61, 115, 0.6);
+  padding: 2px 7px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
 }
 
 /* CRT Horizontal Scanlines Overlay */
@@ -262,32 +300,32 @@
   z-index: 10;
 }
 
-/* Subtle Ambient Radial Glow */
+/* Luminous Aura / Ambient Glow */
 .hac-portrait-ambient-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 35%, rgba(58, 117, 213, 0.18), transparent 70%);
+  background: radial-gradient(circle at 50% 35%, rgba(58, 117, 213, 0.22), transparent 70%);
   pointer-events: none;
   z-index: 12;
 }
 
-/* Interactive Scanning Laser Line on Hover */
+/* Laser Scanning Line on Hover */
 .hac-portrait-laser {
   position: absolute;
   left: 0;
   right: 0;
   height: 2px;
   background: #4a90e2;
-  box-shadow: 0 0 12px #4a90e2;
+  box-shadow: 0 0 14px #4a90e2;
   pointer-events: none;
   z-index: 20;
   opacity: 0;
   top: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
 .hac-portrait-card:hover .hac-portrait-laser {
-  opacity: 0.9;
+  opacity: 0.95;
   animation: hac-laser-sweep 2.4s linear infinite;
 }
 
@@ -297,13 +335,104 @@
   100% { top: 0%; }
 }
 
+/* Audio Waveform / Barcode Dissolve Strip */
+.hac-audio-waveform-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, #070e1c 0%, rgba(11, 23, 42, 0.8) 50%, transparent 100%);
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 6px;
+  overflow: hidden;
+  z-index: 15;
+}
+
+.hac-wave-bar {
+  width: 2px;
+  background: #3d7edb;
+  opacity: 0.75;
+  display: inline-block;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.hac-portrait-card:hover .hac-wave-bar {
+  opacity: 0.95;
+}
+
+/* Bottom Chevron Band */
+.hac-bottom-chevron-band {
+  width: 100%;
+  height: 28px;
+  background: #070e1c;
+  border-top: 1px solid #1b3d75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.hac-chevron-runner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #3d7edb;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+/* Interactive SCROLL Trigger Pill */
+.hac-hero-scroll-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #091324;
+  border: none;
+  border-top: 1px solid rgba(27, 61, 117, 0.7);
+  text-align: center;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #7ba2dd;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+
+.hac-hero-scroll-btn:hover {
+  background: #122340;
+  color: #e2ecff;
+}
+
+.hac-scroll-arrow {
+  font-size: 12px;
+  animation: hac-bounce-arrow 1.4s ease-in-out infinite;
+}
+
+@keyframes hac-bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
 .hac-portrait-footer {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   font-family: monospace;
   font-size: 10px;
   letter-spacing: 0.15em;
   color: #4a90e2;
-  text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -313,9 +442,10 @@
 .hac-portrait-pulse-dot {
   width: 6px;
   height: 6px;
+  background: #3b82f6;
   border-radius: 50%;
-  background: #4a90e2;
-  animation: hac-pulse-glow 1.5s ease-in-out infinite;
+  box-shadow: 0 0 8px #3b82f6;
+  animation: hac-pulse-glow 1.8s infinite;
 }
 
 @keyframes hac-pulse-glow {
@@ -323,12 +453,70 @@
   50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* ==================== SECTIONS COMMON ==================== */
-.hac-section {
-  padding: 4.5rem 2rem 5.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ==================== HEADER MAILBOX BEFORE CONTACT ME ==================== */
+.hac-header-mailbox-anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 800px;
+  margin-right: 12px;
+  vertical-align: middle;
+  z-index: 50;
+  text-decoration: none;
+}
+
+.hac-header-mailbox-card {
+  width: 38px;
+  height: 28px;
+  background: #c92a2a;
+  border-radius: 6px;
   position: relative;
+  box-shadow: 0 6px 14px rgba(201, 42, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hac-header-mailbox-card:hover {
+  box-shadow: 0 8px 20px rgba(201, 42, 42, 0.7);
+}
+
+.hac-header-envelope-fold {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 19px solid transparent;
+  border-right: 19px solid transparent;
+  border-top: 13px solid #e03131;
+}
+
+.hac-header-heart-seal {
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+  font-size: 8px;
+  color: #c92a2a;
+}
+
+/* ==================== EXPERIENCE SECTION ==================== */
+.hac-section {
+  padding: 4.5rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -336,109 +524,103 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  border-bottom: 1px solid rgba(80, 130, 255, 0.35);
+  padding-bottom: 1.25rem;
   margin-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(80, 130, 255, 0.2);
-  padding-bottom: 1rem;
 }
 
-.hac-headline {
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  line-height: 1;
-  color: #ffffff;
+.hac-section-header h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #f0f4fc;
   margin: 0;
+  text-shadow: 0 0 25px rgba(80, 130, 255, 0.3);
 }
 
 .hac-entry-count {
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  color: #93c5fd;
-  text-transform: uppercase;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.85rem;
+  color: #60a5fa;
+  letter-spacing: 0.2em;
 }
 
-/* ==================== EXPERIENCE TABLE (FULL WIDTH, PROPER SPACING) ==================== */
 .hac-experience-table-wrap {
   width: 100%;
-  margin-top: 1rem;
-  border: 1px solid rgba(80, 130, 255, 0.2);
-  border-radius: 4px;
-  background: rgba(10, 22, 48, 0.35);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .hac-table-header {
   display: grid;
-  grid-template-columns: 70px 2.2fr 1.8fr 1.2fr 1.1fr 48px;
-  gap: 1.5rem;
-  padding: 1.1rem 1.5rem;
-  background: rgba(14, 28, 60, 0.7);
-  border-bottom: 1px solid rgba(80, 130, 255, 0.3);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: #93c5fd;
-  text-transform: uppercase;
+  grid-template-columns: 60px 2.2fr 2fr 1.6fr 1.4fr 80px;
+  padding: 0 1.5rem 0.75rem;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: #7ba3df;
+  border-bottom: 1px solid rgba(80, 130, 255, 0.2);
 }
 
 .hac-exp-item {
-  border-bottom: 1px solid rgba(80, 130, 255, 0.15);
-  transition: background 0.2s ease;
+  border: 1px solid rgba(80, 130, 255, 0.25);
+  background: rgba(10, 22, 53, 0.6);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.25s ease;
 }
-.hac-exp-item:last-child {
-  border-bottom: none;
+
+.hac-exp-item:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  background: rgba(14, 30, 74, 0.75);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .hac-exp-summary {
   display: grid;
-  grid-template-columns: 70px 2.2fr 1.8fr 1.2fr 1.1fr 48px;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1.6rem 1.5rem;
+  grid-template-columns: 60px 2.2fr 2fr 1.6fr 1.4fr 80px;
+  padding: 1.4rem 1.5rem;
   cursor: pointer;
+  align-items: center;
+  user-select: none;
+  font-size: 0.9rem;
   list-style: none;
-  transition: background 0.2s ease;
 }
 .hac-exp-summary::-webkit-details-marker {
   display: none;
 }
-.hac-exp-summary:hover {
-  background: rgba(80, 130, 255, 0.08);
-}
 
 .hac-col-num {
-  font-family: 'Chakra Petch', monospace;
-  font-size: 1.1rem;
-  color: #7ba3df;
+  font-family: var(--font-jetbrains-mono), monospace;
+  color: #60a5fa;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
 .hac-col-title {
-  font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #f8fafc;
+  font-size: 1.05rem;
   letter-spacing: 0.02em;
 }
 
 .hac-col-role {
-  font-family: var(--font-jetbrains-mono), monospace;
+  color: #cbd5e1;
   font-size: 0.85rem;
-  color: #c7d2fe;
 }
 
 .hac-col-period {
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 0.82rem;
-  color: #93c5fd;
+  font-size: 0.8rem;
+  color: #94a3b8;
 }
 
 .hac-col-status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  color: #e5eaf2;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  color: #cbd5e1;
 }
 
 .hac-col-status-dot {
@@ -449,124 +631,125 @@
 }
 
 .hac-col-toggle {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(80, 130, 255, 0.35);
-  border-radius: 4px;
-  color: #93c5fd;
-  font-size: 18px;
-  font-family: monospace;
-  transition: all 0.2s ease;
-}
-.hac-exp-item[open] .hac-col-toggle {
-  transform: rotate(45deg);
-  background: rgba(80, 130, 255, 0.25);
-  color: #ffffff;
-  border-color: #60a5fa;
+  text-align: center;
+  color: #60a5fa;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 .hac-exp-detail {
-  padding: 0 1.5rem 1.6rem calc(70px + 1.5rem + 1.5rem);
-  font-size: 0.85rem;
+  padding: 1.25rem 1.5rem 1.75rem 5rem;
+  border-top: 1px solid rgba(80, 130, 255, 0.15);
+  background: rgba(5, 12, 32, 0.65);
+  font-size: 0.88rem;
   line-height: 1.7;
-  color: #b0c4de;
+  color: #cbd5e1;
 }
 
 .hac-exp-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 1rem;
 }
 
 .hac-exp-tag {
-  background: rgba(30, 64, 135, 0.4);
-  border: 1px solid rgba(147, 197, 253, 0.3);
-  padding: 3px 10px;
-  border-radius: 9999px;
+  background: rgba(30, 58, 138, 0.45);
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  color: #bfdbfe;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.72rem;
-  color: #e0e7ff;
+  padding: 3px 9px;
+  border-radius: 4px;
 }
 
-/* ==================== TOOLKIT ==================== */
+/* ==================== TOOLKIT SECTION ==================== */
 .hac-toolkit-disciplines {
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
-  margin-top: 2rem;
+  gap: 1.5rem;
 }
 
 .hac-discipline-row {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 2rem;
+  grid-template-columns: 180px 1fr;
   align-items: center;
+  background: rgba(10, 22, 53, 0.45);
+  border: 1px solid rgba(80, 130, 255, 0.2);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.hac-discipline-row:hover {
+  background: rgba(14, 30, 74, 0.6);
+  border-color: rgba(96, 165, 250, 0.45);
 }
 
 .hac-discipline-label {
+  color: #60a5fa;
   font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  color: #7ba3df;
-  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 .hac-pills-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .hac-tool-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  background: rgba(14, 28, 60, 0.7);
-  border: 1px solid rgba(80, 130, 255, 0.25);
-  border-radius: 4px;
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 0.82rem;
-  color: #ffffff;
+  background: rgba(18, 38, 86, 0.8);
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #e2e8f0;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .hac-tool-pill:hover {
-  background: rgba(35, 70, 150, 0.85);
+  background: rgba(37, 99, 235, 0.35);
   border-color: #60a5fa;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .hac-tool-badge {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 5px;
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
-/* ==================== RECOGNITION ==================== */
+/* ==================== RECOGNITION SECTION ==================== */
 .hac-recognition-tabs {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(80, 130, 255, 0.25);
+  padding-bottom: 0.75rem;
 }
 
 .hac-tab-btn {
-  padding: 8px 20px;
+  background: transparent;
   border: 1px solid rgba(80, 130, 255, 0.3);
-  background: rgba(10, 22, 48, 0.6);
-  color: #93c5fd;
-  font-size: 0.82rem;
+  color: #94a3b8;
+  padding: 6px 16px;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 3px;
-  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
 }
+
 .hac-tab-btn.active, .hac-tab-btn:hover {
-  background: #2563eb;
+  background: rgba(37, 99, 235, 0.4);
   border-color: #60a5fa;
   color: #ffffff;
 }
@@ -574,302 +757,174 @@
 .hac-honors-list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .hac-honor-card {
   display: grid;
-  grid-template-columns: 80px 2.5fr 1.5fr 130px;
-  gap: 1.5rem;
+  grid-template-columns: 80px 1.5fr 1fr 100px;
   align-items: center;
-  padding: 1.5rem 1.75rem;
-  background: rgba(10, 22, 48, 0.45);
-  border: 1px solid rgba(80, 130, 255, 0.18);
-  border-radius: 4px;
-  transition: border-color 0.2s, background 0.2s;
+  background: rgba(10, 22, 53, 0.45);
+  border: 1px solid rgba(80, 130, 255, 0.2);
+  padding: 1.25rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
+
 .hac-honor-card:hover {
-  background: rgba(14, 28, 60, 0.65);
-  border-color: rgba(96, 165, 250, 0.4);
+  border-color: #60a5fa;
+  background: rgba(14, 30, 74, 0.65);
 }
 
 .hac-honor-year {
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.95rem;
-  color: #7ba3df;
-  font-weight: 700;
+  font-family: var(--font-jetbrains-mono), monospace;
+  color: #60a5fa;
+  font-size: 0.85rem;
 }
 
 .hac-honor-title {
-  font-size: 1.1rem;
-  color: #ffffff;
+  color: #f1f5f9;
+  font-size: 1rem;
   margin: 0 0 4px 0;
 }
 
 .hac-honor-desc {
-  font-size: 0.82rem;
   color: #94a3b8;
+  font-size: 0.8rem;
   margin: 0;
-  line-height: 1.5;
 }
 
 .hac-honor-issuer {
-  font-size: 0.82rem;
-  color: #c7d2fe;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 .hac-honor-badge {
   text-align: right;
-  font-family: 'Chakra Petch', monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border: 1px solid rgba(251, 191, 36, 0.4);
-  color: #fbbf24;
-  border-radius: 3px;
-  display: inline-block;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.72rem;
+  color: #38bdf8;
+  letter-spacing: 0.1em;
 }
 
 /* ==================== CONTACT & BLENDED WOVEN CANVAS ==================== */
 .hac-contact-wrap {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 3.5rem;
-  margin-top: 1rem;
-  align-items: start;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .hac-contact-cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: #2563eb;
   color: #ffffff;
-  font-family: 'Chakra Petch', monospace;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  padding: 14px 28px;
-  border-radius: 4px;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
   text-decoration: none;
-  margin-top: 1.5rem;
+  font-weight: bold;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
+
 .hac-contact-cta:hover {
-  background: #1d4ed8;
+  background: #3b82f6;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.6);
 }
 
 .hac-contact-info-block {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hac-contact-label {
-  font-family: 'Chakra Petch', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  color: #7ba3df;
-  margin-bottom: 8px;
-  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #60a5fa;
+  margin-bottom: 6px;
 }
 
 .hac-contact-val {
-  color: #e5eaf2;
+  color: #e2e8f0;
+  font-size: 0.95rem;
   text-decoration: none;
-  font-size: 1rem;
-  display: block;
-  margin-bottom: 6px;
-  transition: color 0.2s;
-}
-.hac-contact-val:hover {
-  color: #60a5fa;
 }
 
-/* Transparent Woven Canvas - Blends directly into website background (NO BLACK BACKGROUND) */
+/* Woven loom canvas seamlessly blends with page background */
 .hac-woven-loom-wrap {
   width: 100%;
-  position: relative;
+  padding: 2rem 0;
   background: transparent !important;
-  border-top: 1px solid rgba(80, 130, 255, 0.2);
-  border-bottom: 1px solid rgba(80, 130, 255, 0.2);
-  margin: 4rem 0 2rem;
-  padding: 1.5rem 0;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .hac-woven-canvas {
-  display: block;
   width: 100%;
   max-width: 1200px;
-  cursor: crosshair;
-  z-index: 10;
+  height: auto;
+  aspect-ratio: 1200 / 260;
   background: transparent !important;
+  cursor: crosshair;
 }
 
 .hac-footer-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(80, 130, 255, 0.15);
+  border-top: 1px solid rgba(80, 130, 255, 0.2);
+  padding: 2rem 0 1rem;
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  color: #93c5fd;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #7ba3df;
 }
 
 .hac-back-top {
   color: #60a5fa;
   text-decoration: none;
-  font-weight: 700;
-  transition: color 0.2s;
+  letter-spacing: 0.1em;
 }
 .hac-back-top:hover {
   color: #ffffff;
 }
 
-/* ==================== 3D MAILBOX IN HEADER (ALIGNED WITH CONTACT ME) ==================== */
-.hac-header-mailbox-wrap {
-  position: fixed !important;
-  top: 33px;
-  right: 304px;
-  display: inline-flex !important;
-  align-items: center !important;
-  vertical-align: middle;
-  perspective: 800px !important;
-  z-index: 1000 !important;
-  pointer-events: auto !important;
+/* Permanent block on old brown temple credits section */
+[data-closing-credits],
+.-_ZYGG_card,
+.-_ZYGG_picture,
+.-_ZYGG_composition,
+.-_ZYGG_backdrop,
+.Rk2J4a_creditsAperture {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: -9999px !important;
 }
 
-.hac-header-mailbox-wrap .hac-mailbox-anchor {
-  display: block;
-  width: 44px;
-  height: 30px;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  position: relative;
-  border-radius: 8px;
-}
-
-.hac-header-mailbox-wrap .hac-mailbox-body {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #e63238;
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(230, 50, 56, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.45);
-  border: 1px solid #c42025;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hac-header-mailbox-wrap .hac-clay-lighting {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 100%);
-  pointer-events: none;
-}
-
-.hac-header-mailbox-wrap .hac-envelope-folds {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.hac-header-mailbox-wrap .hac-heart-seal {
-  position: relative;
-  z-index: 10;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-}
-.hac-header-mailbox-wrap:hover .hac-heart-seal {
-  transform: scale(1.15);
-}
-
-.hac-header-mailbox-wrap .hac-heart-svg {
-  width: 9px;
-  height: 9px;
-  fill: #e63238;
-}
-
-.hac-header-mailbox-wrap .hac-edge-shadow {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(0,0,0,0.2);
-}
-
-.hac-header-mailbox-wrap .hac-cast-shadow {
-  position: absolute;
-  bottom: -4px;
-  left: 4px;
-  right: 4px;
-  height: 6px;
-  background: rgba(0,0,0,0.4);
-  filter: blur(4px);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.hac-header-mailbox-wrap .hac-mailbox-tooltip {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-4px);
-  background: #11161f;
-  border: 1px solid #232d3d;
-  color: #efeade;
-  font-family: monospace;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  white-space: nowrap;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 100;
-}
-
-.hac-header-mailbox-wrap:hover .hac-mailbox-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Responsive adjustments */
 @media (max-width: 900px) {
-  .hac-table-header {
-    display: none;
-  }
+  .hac-table-header { display: none; }
   .hac-exp-summary {
-    grid-template-columns: 50px 1fr 40px;
-    gap: 1rem;
+    grid-template-columns: 40px 1fr 30px;
+    gap: 8px;
   }
   .hac-col-role, .hac-col-period, .hac-col-status {
-    grid-column: 2 / -1;
-  }
-  .hac-exp-detail {
-    padding-left: 1.5rem;
+    grid-column: 2;
+    font-size: 0.75rem;
   }
   .hac-discipline-row {
     grid-template-columns: 1fr;

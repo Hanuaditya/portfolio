@@ -30,8 +30,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hanuma Aditya C — Full-Stack AI Engineer",
-  description: "Building scalable web applications, agentic AI workflows, and cloud-native systems.",
+  title: "Hanuma Aditya — Creative Product Engineer",
+  description: "Creative product engineer & full-stack AI developer. Building thoughtful web architectures, agentic systems, and generative interfaces.",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

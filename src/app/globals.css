@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../styles/abhayrohit.css";
+@import "../styles/portfolio-theme.css";
 
 @layer utilities {
   /* Infinite Marquee animations */

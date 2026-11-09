@@ -51,7 +51,7 @@ export default function Hero() {
       {/* 02 // Kinetic Typography Name */}
       <h1 className="MLPEba_name" aria-label="Hanuma Aditya">
         {/* HANUMA (Rising contour letters) */}
-        <span className="MLPEba_abhay" data-contour-word="true" aria-hidden="true">
+        <span className="MLPEba_hanuma" data-contour-word="true" aria-hidden="true">
           {FIRST_NAME.map((char, idx) => {
             const cfg = LETTER_CONFIGS[idx % LETTER_CONFIGS.length];
             return (
@@ -78,7 +78,7 @@ export default function Hero() {
         </span>
 
         {/* ADITYA (Falling contour letters) */}
-        <span className="MLPEba_rohit" data-contour-word="true" aria-hidden="true">
+        <span className="MLPEba_aditya" data-contour-word="true" aria-hidden="true">
           {LAST_NAME.map((char, idx) => {
             const cfg = LETTER_CONFIGS[idx % LETTER_CONFIGS.length];
             return (
