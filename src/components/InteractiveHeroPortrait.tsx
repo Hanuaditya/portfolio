@@ -26,7 +26,11 @@ const BottomChevronBand = () => (
   </div>
 );
 
-export default function InteractiveHeroPortrait() {
+export default function InteractiveHeroPortrait({
+  imageSrc = "/img/full.png",
+}: {
+  imageSrc?: string;
+}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -62,7 +66,7 @@ export default function InteractiveHeroPortrait() {
   };
 
   const handleScrollClick = () => {
-    const nextSection = document.getElementById("after-hours") || document.getElementById("experience");
+    const nextSection = document.getElementById("innomatics-lab") || document.getElementById("loupe-showcase") || document.getElementById("experience");
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -72,8 +76,9 @@ export default function InteractiveHeroPortrait() {
 
   return (
     <section
+      id="hero"
       ref={containerRef}
-      className="relative w-full min-h-screen bg-[#040810] flex flex-col items-center justify-center py-10 px-4 overflow-hidden select-none"
+      className="relative w-full min-h-screen bg-[#040810] flex flex-col items-center justify-center py-10 px-4 overflow-hidden select-none pt-24"
     >
       {/* Background Architectural Grid */}
       <div
@@ -105,7 +110,7 @@ export default function InteractiveHeroPortrait() {
         {/* Halftone Portrait Viewport */}
         <div className="relative w-full aspect-[3/4] bg-[#03060c] overflow-hidden">
           <Image
-            src="/avatar-halftone.png"
+            src={imageSrc}
             alt="Hanuma Aditya Portrait"
             fill
             priority
