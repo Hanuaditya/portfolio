@@ -17,8 +17,12 @@
       <span>Project screening</span>
       <button type="button" data-sound aria-pressed="false">Sound</button>
     </header>
-    <div class="project-theater-frame">
+    <div class="project-theater-scene">
       <div class="project-theater-screen"></div>
+      <div class="project-theater-audience" aria-hidden="true">
+        <div class="project-theater-frames"></div>
+      </div>
+      <div class="project-theater-seat" aria-hidden="true"></div>
     </div>
     <div class="project-theater-reels">
       <button type="button" data-previous aria-label="Previous demo">‹</button>
@@ -27,20 +31,14 @@
         <p data-reel></p>
       </div>
       <button type="button" data-next aria-label="Next demo">›</button>
-    </div>
-    <div class="project-theater-audience" aria-hidden="true">
-      <div class="project-theater-viewer">
-        <div class="project-theater-head"></div>
-        <div class="project-theater-arm"></div>
-        <div class="project-theater-popcorn"></div>
-      </div>
     </div>`;
 
   const screen = theater.querySelector(".project-theater-screen");
   const title = theater.querySelector("#project-theater-title");
   const reel = theater.querySelector("[data-reel]");
   const sound = theater.querySelector("[data-sound]");
-  const arm = theater.querySelector(".project-theater-arm");
+  const frames = theater.querySelector(".project-theater-frames");
+  let biteTimer;
   let activeIndex = 0;
   let opener;
   let muted = true;
@@ -81,7 +79,10 @@
     sound.setAttribute("aria-pressed", String(!muted));
     const video = screen.querySelector("video");
     if (video) video.muted = muted;
-    if (muted) stopCrunch();
+    if (muted) {
+      clearTimeout(biteTimer);
+      stopCrunch();
+    }
   }
 
   function renderReel(index) {
@@ -124,9 +125,14 @@
     setMuted(!muted);
     if (muted) return;
     prepareAudio();
-    if (audio) void audio.resume().then(playCrunch).catch(() => {});
+    if (audio) void audio.resume().catch(() => {});
   });
-  arm.addEventListener("animationiteration", playCrunch);
+  function cueBite() {
+    clearTimeout(biteTimer);
+    if (!muted) biteTimer = setTimeout(playCrunch, 1250);
+  }
+
+  frames.addEventListener("animationiteration", cueBite);
   theater.addEventListener("close", () => {
     setMuted(true);
     screen.querySelector("video")?.pause();

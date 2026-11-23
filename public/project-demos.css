@@ -93,7 +93,6 @@ html {
 
 html:has(.project-theater[open]) {
   overflow: hidden;
-  scrollbar-gutter: stable;
 }
 
 .project-theater {
@@ -101,7 +100,7 @@ html:has(.project-theater[open]) {
   --theater-ink: #111b22;
   position: fixed;
   inset: 0;
-  width: 100%;
+  width: 100vw;
   height: 100dvh;
   max-width: none;
   max-height: none;
@@ -117,9 +116,10 @@ html:has(.project-theater[open]) {
 
 .project-theater[open] {
   display: grid;
-  grid-template-rows: auto auto auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   justify-items: center;
-  align-content: start;
+  align-items: center;
   gap: clamp(8px, 1.6dvh, 18px);
   animation: project-theater-enter 460ms ease-out both;
 }
@@ -170,25 +170,25 @@ html:has(.project-theater[open]) {
   font-size: 0.75rem;
 }
 
-.project-theater-frame {
-  z-index: 1;
-  width: min(100%, 64rem, 105dvh);
-  padding: clamp(4px, 0.75vw, 11px);
-  border-radius: 12px;
-  border: 1px solid #947957;
-  box-sizing: border-box;
-  background: linear-gradient(135deg, #574b3c, #182026 35%, #554636);
-  box-shadow: 0 0 55px #a9e5e731;
-  animation: project-screen-enter 550ms cubic-bezier(.2,.75,.2,1) both;
+.project-theater-scene {
+  --theater-art: url("/img/project-theater.webp");
+  position: relative;
+  isolation: isolate;
+  width: min(100vw, calc((100dvh - 180px) * 1.79), 100rem);
+  aspect-ratio: 2752 / 1536;
+  mask-image: linear-gradient(#000 89%, transparent);
+  background: var(--theater-art) center / 100% 100% no-repeat;
+  animation: project-screen-enter 650ms cubic-bezier(.2,.75,.2,1) both;
 }
 
 .project-theater-screen {
+  position: absolute;
+  inset: 12.2% 25.65% 43.45% 25.7%;
   display: grid;
   place-items: center;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 5px;
-  background: #090f14;
+  background: #0e1017;
+  box-shadow: 0 0 32px #efceaa30;
 }
 
 .project-theater-screen video {
@@ -217,68 +217,37 @@ html:has(.project-theater[open]) {
 }
 
 .project-theater-audience {
-  align-self: end;
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: clamp(46px, 14dvh, 150px);
-  pointer-events: none;
-  background: repeating-linear-gradient(90deg, transparent 0 2%, #17333a 2% 17%, transparent 17% 20%)
-    center bottom / min(100%, 72rem) 43% no-repeat;
-}
-
-.project-theater-audience::before {
-  content: "";
-  position: absolute;
-  inset: -35dvh 12% 0;
-  background: linear-gradient(#b3e5ee14, #b3e5ee03);
-  clip-path: polygon(9% 0, 91% 0, 62% 100%, 38% 100%);
-}
-
-.project-theater-viewer {
-  position: absolute;
-  bottom: 0;
+  top: 54%;
   left: 50%;
-  width: clamp(54px, 9dvh, 104px);
-  height: 72%;
-  border-radius: 52% 52% 8% 8%;
-  background: linear-gradient(105deg, #aa704e, #734731);
-  transform: translateX(-50%);
+  width: 24%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  transform: translateX(-52%);
+  clip-path: inset(4% 0 1%);
+  pointer-events: none;
+  filter: brightness(.83) saturate(.83) drop-shadow(0 2px 5px #09050b);
 }
 
-.project-theater-head {
-  position: absolute;
-  width: 52%;
-  height: 63%;
-  bottom: 70%;
-  left: 23%;
-  border-radius: 51% 52% 45% 45%;
-  background: repeating-linear-gradient(125deg, #32262b 0 11%, #423237 11% 18%);
-  box-shadow: inset 0 -5px #9e6648;
-  animation: project-audience-nod 4.8s ease infinite;
+.project-theater-frames {
+  height: 3000%;
+  background: url("/img/project-audience.webp") top center / 100% 100% no-repeat;
 }
 
-.project-theater-arm {
-  position: absolute;
-  width: 47%;
-  height: 18%;
-  top: 46%;
-  right: -9%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #a66a47 62%, #c58965 62%);
-  transform-origin: 11% 50%;
-  animation: project-popcorn-bite 4.8s ease infinite;
+.project-theater[open] .project-theater-frames {
+  animation: project-popcorn-loop 3s steps(30, end) infinite;
 }
 
-.project-theater-popcorn {
+.project-theater-seat {
   position: absolute;
-  width: 31%;
-  height: 41%;
-  top: 50%;
-  right: -23%;
-  border-top: 5px dotted #f5d79c;
-  border-radius: 3px 3px 16% 16%;
-  background: repeating-linear-gradient(110deg, #f1d7a1 0 24%, #4f7972 24% 49%);
+  inset: 0;
+  background: var(--theater-art) center / 100% 100% no-repeat;
+  clip-path: polygon(
+    0 76%, 17% 74%, 28% 76%, 32% 73.1%, 39% 73.1%, 43% 76%,
+    44% 74.3%, 45% 73.2%, 54.5% 73.2%, 55.7% 74.3%, 56.5% 76%,
+    59% 73.1%, 69% 73.1%, 72% 76%, 100% 76%, 100% 100%, 0 100%
+  );
+  pointer-events: none;
 }
 
 @keyframes project-theater-enter {
@@ -287,35 +256,50 @@ html:has(.project-theater[open]) {
 }
 
 @keyframes project-screen-enter {
-  from { transform: translateY(12px) scale(.95); }
-  to { transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(12px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes project-popcorn-bite {
-  0%, 7% { transform: rotate(-128deg); }
-  17%, 85% { transform: rotate(18deg); }
-  100% { transform: rotate(-128deg); }
+@keyframes project-popcorn-loop {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
 }
 
-@keyframes project-audience-nod {
-  0%, 12% { transform: translateY(2px) rotate(5deg); }
-  20%, 90% { transform: translateY(0) rotate(0); }
-  100% { transform: translateY(2px) rotate(5deg); }
+@media (max-width: 760px) and (orientation: portrait) {
+  .project-theater[open] {
+    grid-template-rows: auto minmax(0, .7fr) auto auto minmax(0, 1fr);
+  }
+
+  .project-theater-scene {
+    grid-row: 3;
+    width: 168vw;
+  }
+
+  .project-theater-reels {
+    grid-row: 4;
+  }
 }
 
 @media (max-height: 420px) {
-  .project-theater[open] { gap: 4px; }
-  .project-theater-frame { width: min(100%, 95dvh); }
-  .project-theater-audience { display: none; }
+  .project-theater {
+    padding-block: 4px;
+  }
+
+  .project-theater[open] {
+    gap: 3px;
+  }
+
+  .project-theater-scene {
+    width: min(100vw, calc((100dvh - 104px) * 1.79));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
   .project-theater[open],
-  .project-theater-frame,
-  .project-theater-head,
-  .project-theater-arm {
+  .project-theater-scene,
+  .project-theater[open] .project-theater-frames {
     animation: none;
   }
 }
