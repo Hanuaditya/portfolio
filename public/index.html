@@ -490,13 +490,40 @@
 <link rel="apple-touch-icon" href="/favicon.svg" />
 <link rel="stylesheet" href="/jarnket_styles.css" />
 <style id="hac-hide-credits">
+#khajuraho,
+#khajuraho-film,
+#khajuraho-reading,
+#khajuraho-arrival,
+[data-film-document],
+[aria-label*="Khajuraho"],
+[aria-labelledby*="khajuraho"],
+[data-opening-notice],
+.kZ5Aua_departureGround,
+.kZ5Aua_room,
+.kZ5Aua_aperture,
+.kZ5Aua_openingNotice,
+.kZ5Aua_foreground,
+.kZ5Aua_cinema,
+.kZ5Aua_ivory,
+.kZ5Aua_creditsAperture,
+.kZ5Aua_creditsDialog,
+.kZ5Aua_renderer,
+.kZ5Aua_occlusion,
+.kZ5Aua_originalRoom,
+.kZ5Aua_tablePlate,
+.kZ5Aua_tvPlate,
+.kZ5Aua_propsPlate,
+.kZ5Aua_leavesPlate,
+.kZ5Aua_fallback,
+.oL9L8W_lightPrompt,
 [data-closing-credits],
 [data-closing-credits="true"],
 .-_ZYGG_card,
 .-_ZYGG_picture,
 .-_ZYGG_composition,
 .-_ZYGG_backdrop,
-.Rk2J4a_creditsAperture {
+.Rk2J4a_creditsAperture,
+.kOY8Ua_tail {
   display: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
@@ -615,16 +642,24 @@ kind of <em data-inline="true">effort.</em></h3><p class="WulxgG_chapterLead">Qu
       </div>
     `;
 
-    wrap.addEventListener('click', function(e) {
-      e.preventDefault();
+    function scrollToContact(e) {
+      if (e) e.preventDefault();
       const mount = document.getElementById('hac-jarnket-mount');
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
       if (mount) {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        mount.style.opacity = '1';
+        mount.style.pointerEvents = 'auto';
         setTimeout(() => {
           mount.scrollTo({ top: mount.scrollHeight, behavior: 'smooth' });
         }, 300);
       }
-    });
+    }
+
+    wrap.addEventListener('click', scrollToContact);
+    if (!contactBtn.__contactWired) {
+      contactBtn.__contactWired = true;
+      contactBtn.addEventListener('click', scrollToContact);
+    }
 
     contactBtn.parentNode.insertBefore(wrap, contactBtn);
     mailboxMounted = true;
@@ -715,28 +750,33 @@ kind of <em data-inline="true">effort.</em></h3><p class="WulxgG_chapterLead">Qu
   // ==================== 3. MOUNT JARNKET SECTIONS ====================
   let sectionsMounted = false;
   function mountJarnket() {
-    if (sectionsMounted && document.getElementById('hac-jarnket-experience')) return;
-    const tail = document.querySelector('.kOY8Ua_tail');
-    if (!tail) return;
-
-    // Purge old closing credits brown section completely
-    // Closing credits suppressed safely via CSS display:none !important
+    const stage = document.querySelector('._4ZvYmq_stage');
+    if (!stage) return;
 
     let mount = document.getElementById('hac-jarnket-mount');
-    if (!mount) {
+    if (mount) {
+      if (mount.parentElement !== stage) {
+        stage.appendChild(mount);
+      }
+    } else {
       mount = document.createElement('div');
       mount.id = 'hac-jarnket-mount';
-      mount.style.cssText = 'position:relative;width:100%;z-index:40;background:#091533;overflow-y:auto;overflow-x:hidden;max-height:100vh;-webkit-overflow-scrolling:touch;';
-      tail.parentNode.insertBefore(mount, tail.nextSibling);
+      stage.appendChild(mount);
     }
+
+    mount.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:40;background:#091533;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;opacity:0;pointer-events:none;transition:opacity 0.25s ease;';
 
     if (!document.getElementById('hac-jarnket-experience')) {
       mount.innerHTML = sectionsContent;
       sectionsMounted = true;
       initPortraitTiltCard();
       initWovenCanvas();
+      setupMountScrollDelegation();
     } else {
+      sectionsMounted = true;
       initPortraitTiltCard();
+      initWovenCanvas();
+      setupMountScrollDelegation();
     }
   }
 
@@ -854,10 +894,37 @@ kind of <em data-inline="true">effort.</em></h3><p class="WulxgG_chapterLead">Qu
   }
 
   // ==================== 5. SCROLL DELEGATION & SAFE INITIALIZATION ====================
+  window.hacBackToJourney = function() {
+    const mount = document.getElementById('hac-jarnket-mount');
+    if (mount) mount.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   function setupMountScrollDelegation() {
     const mount = document.getElementById('hac-jarnket-mount');
     if (!mount || mount.__scrollDelegated) return;
     mount.__scrollDelegated = true;
+
+    function sync() {
+      const y = window.scrollY;
+      const startY = 19200;
+      const endY = 34000;
+      if (y < startY) {
+        mount.style.opacity = '0';
+        mount.style.pointerEvents = 'none';
+      } else {
+        mount.style.opacity = '1';
+        mount.style.pointerEvents = 'auto';
+        const progress = Math.min(1, Math.max(0, (y - startY) / (endY - startY)));
+        const maxMount = mount.scrollHeight - mount.clientHeight;
+        if (maxMount > 0) {
+          mount.scrollTop = progress * maxMount;
+        }
+      }
+    }
+
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
 
     mount.addEventListener('wheel', function(e) {
       if (e.deltaY < 0 && mount.scrollTop <= 0) {
