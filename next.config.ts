@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // The archived homepage expects its runtime and fonts at these URLs.
+        {
+          source: "/_next/static/immutable/:asset*",
+          destination: "/static/immutable/:asset*",
+        },
         {
           source: "/",
           destination: "/index.html",

@@ -1,30 +1,41 @@
 import type { Metadata } from "next";
-import { Anton, Newsreader, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const anton = Anton({
+const anton = localFont({
+  src: "../../public/fonts/anton_full_latin.woff2",
   weight: "400",
-  subsets: ["latin"],
   variable: "--font-anton",
   display: "swap",
 });
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
+const newsreader = localFont({
+  src: [
+    {
+      path: "../../public/fonts/newsreader_latin_wght_normal_entry_subset-s.p.1g6a7_yqwawqx.woff2",
+      weight: "200 800",
+    },
+    {
+      path: "../../public/fonts/newsreader_italic_variable-s.0wdinsm5ohpci.woff2",
+      weight: "200 800",
+      style: "italic",
+    },
+  ],
   variable: "--font-newsreader",
   display: "swap",
 });
 
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
+const instrumentSans = localFont({
+  src: "../../public/fonts/instrument_sans_latin_wdth_normal_entry_subset-s.p.3redu98f3-dg9.woff2",
+  weight: "400 700",
   variable: "--font-instrument",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+const jetbrainsMono = localFont({
+  src: "../../public/fonts/jetbrains_mono_latin_wght_normal_entry_subset.p.3jmbz07ne0yg6.woff2",
+  weight: "100 800",
   variable: "--font-mono",
   display: "swap",
 });
