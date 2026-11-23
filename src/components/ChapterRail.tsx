@@ -11,9 +11,12 @@ interface Chapter {
 
 const CHAPTERS: Chapter[] = [
   { id: "hero", number: "01", title: "Introduction", image: "/img/banner.webp" },
-  { id: "innomatics", number: "02", title: "Innomatics Lab", image: "/img/innomatics-lab-3d.jpg" },
-  { id: "experience", number: "03", title: "Experience & Trajectory", image: "/img/magnifying-asset.jpg" },
-  { id: "contact", number: "04", title: "Terminal Reachout", image: "/img/contact.webp" },
+  { id: "tbd-health", number: "02", title: "Unshell (AML Graph)", image: "/img/tbd-cover.webp" },
+  { id: "haspr", number: "03", title: "Horizon Meet & Veridian", image: "/img/haspr.webp" },
+  { id: "khajuraho", number: "04", title: "Systems Architecture", image: "/img/khajuraho.webp" },
+  { id: "play", number: "05", title: "Tech Stack Matrix", image: "/img/play.webp" },
+  { id: "after-hours", number: "06", title: "EvoCode & Awards", image: "/img/after-hours.webp" },
+  { id: "contact", number: "07", title: "Terminal Reachout", image: "/img/contact.webp" },
 ];
 
 export default function ChapterRail() {
