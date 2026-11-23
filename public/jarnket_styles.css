@@ -857,7 +857,7 @@
   text-decoration: none;
 }
 
-/* Woven loom canvas seamlessly blends with page background */
+/* Readable footer wordmark with a subtle woven texture. */
 .hac-woven-loom-wrap {
   width: 100%;
   padding: 2rem 0;
@@ -868,13 +868,29 @@
   overflow: hidden;
 }
 
-.hac-woven-canvas {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;
-  aspect-ratio: 1200 / 260;
-  background: transparent !important;
-  cursor: crosshair;
+@font-face {
+  font-family: "Portfolio Display";
+  src: url("/fonts/anton_full_latin.woff2") format("woff2");
+  font-display: swap;
+}
+
+.hac-woven-name {
+  color: #d9e7ff;
+  font: 400 clamp(2rem, 9vw, 10rem) / 1.08 "Portfolio Display", Impact, sans-serif;
+  letter-spacing: .035em;
+  margin: 0;
+  padding: .12em .15em;
+  text-align: center;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@supports (background-clip: text) {
+  .hac-woven-name {
+    background: repeating-linear-gradient(0deg, #a4bce8 0 1px, #e2ecff 1px 3px);
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .hac-footer-bar {

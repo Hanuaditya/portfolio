@@ -235,6 +235,45 @@ html:has(.project-theater[open]) {
   object-fit: contain;
 }
 
+.project-theater-screen > * {
+  grid-area: 1 / 1;
+}
+
+.project-theater-hover {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #1a101de8;
+  color: #f6efe5;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+  pointer-events: none;
+}
+
+.project-theater-screen:is(:hover, :focus-within) .project-theater-hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.project-theater-hover a {
+  padding: 8px;
+  color: inherit;
+}
+
+@media (hover: none) {
+  .project-theater-hover:has(button) {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
 .project-theater-reels {
   align-self: end;
   margin-bottom: max(14px, 4dvh);
@@ -338,6 +377,7 @@ html:has(.project-theater[open]) {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .project-theater-hover { transition: none; }
 
   .project-theater[open],
   .project-theater-scene,

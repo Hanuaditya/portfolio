@@ -92,7 +92,13 @@
     reel.textContent = `Reel ${activeIndex + 1} / ${projects.length}`;
     screen.querySelector("video")?.pause();
     screen.replaceChildren();
-    if (!project.videoSrc) return;
+    if (!project.videoSrc) {
+      const placeholder = document.createElement("p");
+      placeholder.className = "project-theater-hover";
+      placeholder.textContent = "Demo coming soon";
+      screen.append(placeholder);
+      return;
+    }
 
     const video = document.createElement("video");
     video.controls = true;
@@ -100,12 +106,44 @@
     video.muted = muted;
     video.src = project.videoSrc;
     video.setAttribute("aria-label", `${project.title} demo`);
+    const controls = document.createElement("div");
+    controls.className = "project-theater-hover";
+
+    const playback = document.createElement("button");
+    playback.type = "button";
+    function updatePlayback() {
+      playback.textContent = video.paused ? "Play" : "Pause";
+      playback.setAttribute("aria-label", video.paused ? "Play demo" : "Pause demo");
+    }
+    playback.addEventListener("click", () => {
+      if (video.paused) {
+        void video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+    video.addEventListener("play", updatePlayback);
+    video.addEventListener("pause", updatePlayback);
+    video.addEventListener("ended", updatePlayback);
+    updatePlayback();
+    controls.append(playback);
+
+    if (project.liveUrl) {
+      const live = document.createElement("a");
+      live.href = project.liveUrl;
+      live.target = "_blank";
+      live.rel = "noopener noreferrer";
+      live.textContent = "View Live Project";
+      controls.append(live);
+    }
+
     video.addEventListener("error", () => {
       const message = document.createElement("p");
       message.textContent = "This demo could not be loaded.";
       video.replaceWith(message);
+      controls.remove();
     }, { once: true });
-    screen.append(video);
+    screen.append(video, controls);
     void video.play().catch(() => {
       // Native controls are available when autoplay is blocked.
     });
